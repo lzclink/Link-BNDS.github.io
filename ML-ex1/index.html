@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"link-bnds.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Machine Learning By Andrew NgContent Introduction Potential Submit Problem ex1.m computerCost.m gradientDescent.m ex1_multi.m featureNormalize.m computeCostMulti.m gradientDescentMulti.m normalEqn.m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ML_ex1">
+<meta property="og:url" content="https://link-bnds.github.io/ML-ex1/index.html">
+<meta property="og:site_name" content="Link LZCのBlog">
+<meta property="og:description" content="Machine Learning By Andrew NgContent Introduction Potential Submit Problem ex1.m computerCost.m gradientDescent.m ex1_multi.m featureNormalize.m computeCostMulti.m gradientDescentMulti.m normalEqn.m">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/f1.png">
+<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/f2.png">
+<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/d1.png">
+<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/f3.png">
+<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/suc1.png">
+<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/mul.png">
+<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/suc2.png">
+<meta property="article:published_time" content="2022-03-18T06:50:54.000Z">
+<meta property="article:modified_time" content="2022-07-20T09:26:37.650Z">
+<meta property="article:author" content="Link LZC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://link-bnds.github.io/img/ML/ex1/f1.png">
+
+
+<link rel="canonical" href="https://link-bnds.github.io/ML-ex1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://link-bnds.github.io/ML-ex1/","path":"ML-ex1/","title":"ML_ex1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ML_ex1 | Link LZCのBlog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Link LZCのBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Accumulation</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning-By-Andrew-Ng"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning By Andrew Ng</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Content"><span class="nav-number">1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Potential-Submit-Problem"><span class="nav-number">1.2.1.</span> <span class="nav-text">Potential Submit Problem</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ex1-m"><span class="nav-number">1.3.</span> <span class="nav-text">ex1.m</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#computerCost-m"><span class="nav-number">1.3.1.</span> <span class="nav-text">computerCost.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gradientDescent-m"><span class="nav-number">1.3.2.</span> <span class="nav-text">gradientDescent.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ex1-multi-m"><span class="nav-number">1.3.3.</span> <span class="nav-text">ex1_multi.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#featureNormalize-m"><span class="nav-number">1.3.4.</span> <span class="nav-text">featureNormalize.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#computeCostMulti-m"><span class="nav-number">1.3.5.</span> <span class="nav-text">computeCostMulti.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gradientDescentMulti-m"><span class="nav-number">1.3.6.</span> <span class="nav-text">gradientDescentMulti.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#normalEqn-m"><span class="nav-number">1.3.7.</span> <span class="nav-text">normalEqn.m</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Link LZC"
+      src="/images/rin.png">
+  <p class="site-author-name" itemprop="name">Link LZC</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Link-BNDS" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Link-BNDS" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/31118078" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;31118078" rel="noopener" target="_blank">Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kpl12345yh@163.com" title="E-Mail → mailto:kpl12345yh@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://link-bnds.github.io/ML-ex1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/rin.png">
+      <meta itemprop="name" content="Link LZC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Link LZCのBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ML_ex1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-03-18 14:50:54" itemprop="dateCreated datePublished" datetime="2022-03-18T14:50:54+08:00">2022-03-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-07-20 17:26:37" itemprop="dateModified" datetime="2022-07-20T17:26:37+08:00">2022-07-20</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Machine-Learning-By-Andrew-Ng"><a href="#Machine-Learning-By-Andrew-Ng" class="headerlink" title="Machine Learning By Andrew Ng"></a>Machine Learning By Andrew Ng</h3><h4 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h4><ul>
+<li>Introduction</li>
+<li>Potential Submit Problem</li>
+<li>ex1.m</li>
+<li>computerCost.m</li>
+<li>gradientDescent.m</li>
+<li>ex1_multi.m</li>
+<li>featureNormalize.m</li>
+<li>computeCostMulti.m</li>
+<li>gradientDescentMulti.m</li>
+<li>normalEqn.m</li>
+</ul>
+<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>I have listened for so many times that the course: Machine Learning by Andrew Ng is one of the best introductory course for machine learning.<br>Now, I have finished the first two week’s classed and pass the first programming project. I truly fathom out the deliberate design of this course. The passion and meticulous designed project impress me as well. It is so particular that I feel like someone is teaching me hand-by-hand.<br>Coursera uses a kind of judging method which is not like the common OJ that you upload your program and they run it and test it with their test data. Coursera uses an aggregate local submit module that can do all the stuff. You just need to generate a token that linked to your coursera account so that it can upload your progress. It is so cooooool!!!!!!<br> <img src="/img/ML/ex1/f1.png" alt="f1"><br> <img src="/img/ML/ex1/f2.png" alt="f2"></p>
+<h5 id="Potential-Submit-Problem"><a href="#Potential-Submit-Problem" class="headerlink" title="Potential Submit Problem"></a>Potential Submit Problem</h5><p>Once I tried to submit the program, it says<br><img src="/img/ML/ex1/d1.png" alt="d1"><br>According to <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44498043/article/details/105904715">https://blog.csdn.net/qq_44498043/article/details/105904715</a> and <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45923568/article/details/104193579">https://blog.csdn.net/weixin_45923568/article/details/104193579</a> , I found out that the error is caused by the vulnerable grammar that it used before. And in the latest version of matlab, matlab banned those kinds of grammar in order to increase the stability. So all we need is to go to the coursera website and download the new version of submit module. </p>
+<h4 id="ex1-m"><a href="#ex1-m" class="headerlink" title="ex1.m"></a>ex1.m</h4><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% Initialization</span>
+clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
+
+<span class="token comment">%% ==================== Part 1: Basic Function ====================</span>
+<span class="token comment">% Complete warmUpExercise.m</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Running warmUpExercise ... \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'5x5 Identity Matrix: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">warmUpExercise</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% ======================= Part 2: Plotting =======================</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Plotting Data ...\n'</span><span class="token punctuation">)</span>
+data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'ex1data1.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% number of training examples</span>
+
+<span class="token comment">% Plot Data</span>
+<span class="token comment">% Note: You have to complete the code in plotData.m</span>
+<span class="token function">plotData</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% =================== Part 3: Cost and Gradient descent ===================</span>
+
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">% Add a column of ones to x</span>
+theta <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% initialize fitting parameters</span>
+
+<span class="token comment">% Some gradient descent settings</span>
+iterations <span class="token operator">=</span> <span class="token number">1500</span><span class="token punctuation">;</span>
+alpha <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\nTesting the cost function ...\n'</span><span class="token punctuation">)</span>
+<span class="token comment">% compute and display initial cost</span>
+J <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'With theta = [0 ; 0]\nCost computed = %f\n'</span><span class="token punctuation">,</span> J<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Expected cost value (approx) 32.07\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% further testing of the cost function</span>
+J <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">;</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\nWith theta = [-1 ; 2]\nCost computed = %f\n'</span><span class="token punctuation">,</span> J<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Expected cost value (approx) 54.24\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\nRunning Gradient Descent ...\n'</span><span class="token punctuation">)</span>
+<span class="token comment">% run gradient descent</span>
+theta <span class="token operator">=</span> <span class="token function">gradientDescent</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> iterations<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% print theta to screen</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta found by gradient descent:\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'%f\n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Expected theta values (approx)\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' -3.6303\n  1.1664\n\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Plot the linear fit</span>
+hold on<span class="token punctuation">;</span> <span class="token comment">% keep previous plot visible</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">X</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> X<span class="token operator">*</span>theta<span class="token punctuation">,</span> <span class="token string">'-'</span><span class="token punctuation">)</span>
+<span class="token function">legend</span><span class="token punctuation">(</span><span class="token string">'Training data'</span><span class="token punctuation">,</span> <span class="token string">'Linear regression'</span><span class="token punctuation">)</span>
+hold off <span class="token comment">% don't overlay any more plots on this figure</span>
+
+<span class="token comment">% Predict values for population sizes of 35,000 and 70,000</span>
+predict1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3.5</span><span class="token punctuation">]</span> <span class="token operator">*</span>theta<span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'For population = 35,000, we predict a profit of %f\n'</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
+    predict1<span class="token operator">*</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+predict2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span> <span class="token operator">*</span> theta<span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'For population = 70,000, we predict a profit of %f\n'</span><span class="token punctuation">,</span><span class="token punctuation">...</span>
+    predict2<span class="token operator">*</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% ============= Part 4: Visualizing J(theta_0, theta_1) =============</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Visualizing J(theta_0, theta_1) ...\n'</span><span class="token punctuation">)</span>
+
+<span class="token comment">% Grid over which we will calculate J</span>
+theta0_vals <span class="token operator">=</span> <span class="token function">linspace</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+theta1_vals <span class="token operator">=</span> <span class="token function">linspace</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% initialize J_vals to a matrix of 0's</span>
+J_vals <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">length</span><span class="token punctuation">(</span>theta0_vals<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">length</span><span class="token punctuation">(</span>theta1_vals<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Fill out J_vals</span>
+<span class="token keyword">for</span> <span class="token number">i</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>theta0_vals<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token number">j</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span><span class="token function">length</span><span class="token punctuation">(</span>theta1_vals<span class="token punctuation">)</span>
+	  t <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">theta0_vals</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token function">theta1_vals</span><span class="token punctuation">(</span><span class="token number">j</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	  <span class="token function">J_vals</span><span class="token punctuation">(</span><span class="token number">i</span><span class="token punctuation">,</span><span class="token number">j</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">% Because of the way meshgrids work in the surf command, we need to</span>
+<span class="token comment">% transpose J_vals before calling surf, or else the axes will be flipped</span>
+J_vals <span class="token operator">=</span> J_vals<span class="token operator">'</span><span class="token punctuation">;</span>
+<span class="token comment">% Surface plot</span>
+figure<span class="token punctuation">;</span>
+<span class="token function">surf</span><span class="token punctuation">(</span>theta0_vals<span class="token punctuation">,</span> theta1_vals<span class="token punctuation">,</span> J_vals<span class="token punctuation">)</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'\theta_0'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'\theta_1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Contour plot</span>
+figure<span class="token punctuation">;</span>
+<span class="token comment">% Plot J_vals as 15 contours spaced logarithmically between 0.01 and 100</span>
+<span class="token function">contour</span><span class="token punctuation">(</span>theta0_vals<span class="token punctuation">,</span> theta1_vals<span class="token punctuation">,</span> J_vals<span class="token punctuation">,</span> <span class="token function">logspace</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'\theta_0'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'\theta_1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hold on<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">theta</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">theta</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'rx'</span><span class="token punctuation">,</span> <span class="token string">'MarkerSize'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">'LineWidth'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="computerCost-m"><a href="#computerCost-m" class="headerlink" title="computerCost.m"></a>computerCost.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> J <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span>
+<span class="token comment">%COMPUTECOST Compute cost for linear regression</span>
+<span class="token comment">%   J = COMPUTECOST(X, y, theta) computes the cost of using theta as the</span>
+<span class="token comment">%   parameter for linear regression to fit the data points in X and y</span>
+
+<span class="token comment">% Initialize some useful values</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% number of training examples</span>
+
+<span class="token comment">% You need to return the following variables correctly </span>
+J <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: Compute the cost of a particular choice of theta</span>
+<span class="token comment">%               You should set J to the cost.</span>
+X_pd<span class="token operator">=</span><span class="token function">zeros</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X_pd<span class="token operator">=</span>X<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+J<span class="token operator">=</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">(</span>y<span class="token operator">-</span>X_pd<span class="token punctuation">)</span><span class="token operator">.^</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+J<span class="token operator">=</span>J<span class="token operator">./</span><span class="token punctuation">(</span><span class="token number">2.</span><span class="token operator">*</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">% =========================================================================</span>
+
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="gradientDescent-m"><a href="#gradientDescent-m" class="headerlink" title="gradientDescent.m"></a>gradientDescent.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescent</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span>
+<span class="token comment">%GRADIENTDESCENT Performs gradient descent to learn theta</span>
+<span class="token comment">%   theta = GRADIENTDESCENT(X, y, theta, alpha, num_iters) updates theta by </span>
+<span class="token comment">%   taking num_iters gradient steps with learning rate alpha</span>
+
+<span class="token comment">% Initialize some useful values</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">% number of training examples</span>
+J_history <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span>num_iters<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> iter <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">:</span>num_iters
+
+    <span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+    <span class="token comment">% Instructions: Perform a single gradient step on the parameter vector</span>
+    <span class="token comment">%               theta. </span>
+    %
+    <span class="token comment">% Hint: While debugging, it can be useful to print out the values</span>
+    <span class="token comment">%       of the cost function (computeCost) and gradient here.</span>
+    %
+
+    theta<span class="token operator">=</span>theta<span class="token operator">-</span>alpha<span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span>m<span class="token punctuation">)</span><span class="token operator">*</span>X<span class="token operator">'</span><span class="token operator">*</span><span class="token punctuation">(</span>X<span class="token operator">*</span>theta<span class="token operator">-</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">% ============================================================</span>
+
+    <span class="token comment">% Save the cost J in every iteration    </span>
+    <span class="token function">J_history</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p> <img src="/img/ML/ex1/f3.png" alt="f3"><br> <img src="/img/ML/ex1/suc1.png" alt="suc1"></p>
+<h5 id="ex1-multi-m"><a href="#ex1-multi-m" class="headerlink" title="ex1_multi.m"></a>ex1_multi.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+
+<span class="token comment">%% Clear and Close Figures</span>
+clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Loading data ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% Load Data</span>
+data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'ex1data2.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Print out some data points</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'First 10 examples from the dataset: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' x = [%.0f %.0f], y = %.0f \n'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">X</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span> <span class="token function">y</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Scale features and set them to zero mean</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Normalizing Features ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span>X mu sigma<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">featureNormalize</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Add intercept term to X</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> X<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">%% ================ Part 2: Gradient Descent ================</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: We have provided you with the following starter</span>
+<span class="token comment">%               code that runs gradient descent with a particular</span>
+<span class="token comment">%               learning rate (alpha). </span>
+%
+<span class="token comment">%               Your task is to first make sure that your functions - </span>
+<span class="token comment">%               computeCost and gradientDescent already work with </span>
+<span class="token comment">%               this starter code and support multiple variables.</span>
+%
+<span class="token comment">%               After that, try running gradient descent with </span>
+<span class="token comment">%               different values of alpha and see which one gives</span>
+<span class="token comment">%               you the best result.</span>
+%
+<span class="token comment">%               Finally, you should complete the code at the end</span>
+<span class="token comment">%               to predict the price of a 1650 sq-ft, 3 br house.</span>
+%
+<span class="token comment">% Hint: By using the 'hold on' command, you can plot multiple</span>
+<span class="token comment">%       graphs on the same figure.</span>
+%
+<span class="token comment">% Hint: At prediction, make sure you do the same feature normalization.</span>
+%
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Running gradient descent ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Choose some alpha value</span>
+alpha <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">;</span>
+num_iters <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Init Theta and Run Gradient Descent </span>
+theta <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescentMulti</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Plot the convergence graph</span>
+figure<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">numel</span><span class="token punctuation">(</span>J_history<span class="token punctuation">)</span><span class="token punctuation">,</span> J_history<span class="token punctuation">,</span> <span class="token string">'-b'</span><span class="token punctuation">,</span> <span class="token string">'LineWidth'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'Number of iterations'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'Cost J'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Display gradient descent's result</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta computed from gradient descent: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' %f \n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Estimate the price of a 1650 sq-ft, 3 br house</span>
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Recall that the first column of X is all-ones. Thus, it does</span>
+<span class="token comment">% not need to be normalized.</span>
+price <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">% You should change this</span>
+X_test1<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1650</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+price<span class="token operator">=</span>X_test1<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+
+<span class="token comment">% ============================================================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Predicted price of a 1650 sq-ft, 3 br house '</span> <span class="token punctuation">...</span>
+         <span class="token string">'(using gradient descent):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% ================ Part 3: Normal Equations ================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Solving with normal equations...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: The following code computes the closed form </span>
+<span class="token comment">%               solution for linear regression using the normal</span>
+<span class="token comment">%               equations. You should complete the code in </span>
+<span class="token comment">%               normalEqn.m</span>
+%
+<span class="token comment">%               After doing so, you should complete this code </span>
+<span class="token comment">%               to predict the price of a 1650 sq-ft, 3 br house.</span>
+%
+
+<span class="token comment">%% Load Data</span>
+data <span class="token operator">=</span> <span class="token function">csvread</span><span class="token punctuation">(</span><span class="token string">'ex1data2.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Add intercept term to X</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> X<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Calculate the parameters from the normal equation</span>
+theta <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Display normal equation's result</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta computed from the normal equations: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' %f \n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">% Estimate the price of a 1650 sq-ft, 3 br house</span>
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+price <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">% You should change this</span>
+
+X_test2<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1650</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+price<span class="token operator">=</span>X_test2<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+<span class="token comment">% ============================================================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Predicted price of a 1650 sq-ft, 3 br house '</span> <span class="token punctuation">...</span>
+         <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="featureNormalize-m"><a href="#featureNormalize-m" class="headerlink" title="featureNormalize.m"></a>featureNormalize.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+
+<span class="token comment">%% Clear and Close Figures</span>
+clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Loading data ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% Load Data</span>
+data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'ex1data2.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Print out some data points</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'First 10 examples from the dataset: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' x = [%.0f %.0f], y = %.0f \n'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">X</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span> <span class="token function">y</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Scale features and set them to zero mean</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Normalizing Features ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span>X mu sigma<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">featureNormalize</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Add intercept term to X</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> X<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">%% ================ Part 2: Gradient Descent ================</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: We have provided you with the following starter</span>
+<span class="token comment">%               code that runs gradient descent with a particular</span>
+<span class="token comment">%               learning rate (alpha). </span>
+%
+<span class="token comment">%               Your task is to first make sure that your functions - </span>
+<span class="token comment">%               computeCost and gradientDescent already work with </span>
+<span class="token comment">%               this starter code and support multiple variables.</span>
+%
+<span class="token comment">%               After that, try running gradient descent with </span>
+<span class="token comment">%               different values of alpha and see which one gives</span>
+<span class="token comment">%               you the best result.</span>
+%
+<span class="token comment">%               Finally, you should complete the code at the end</span>
+<span class="token comment">%               to predict the price of a 1650 sq-ft, 3 br house.</span>
+%
+<span class="token comment">% Hint: By using the 'hold on' command, you can plot multiple</span>
+<span class="token comment">%       graphs on the same figure.</span>
+%
+<span class="token comment">% Hint: At prediction, make sure you do the same feature normalization.</span>
+%
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Running gradient descent ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Choose some alpha value</span>
+alpha <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">;</span>
+num_iters <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Init Theta and Run Gradient Descent </span>
+theta <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescentMulti</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Plot the convergence graph</span>
+figure<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">numel</span><span class="token punctuation">(</span>J_history<span class="token punctuation">)</span><span class="token punctuation">,</span> J_history<span class="token punctuation">,</span> <span class="token string">'-b'</span><span class="token punctuation">,</span> <span class="token string">'LineWidth'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'Number of iterations'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'Cost J'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Display gradient descent's result</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta computed from gradient descent: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' %f \n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Estimate the price of a 1650 sq-ft, 3 br house</span>
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Recall that the first column of X is all-ones. Thus, it does</span>
+<span class="token comment">% not need to be normalized.</span>
+price <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">% You should change this</span>
+X_test1<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1650</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+price<span class="token operator">=</span>X_test1<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+
+<span class="token comment">% ============================================================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Predicted price of a 1650 sq-ft, 3 br house '</span> <span class="token punctuation">...</span>
+         <span class="token string">'(using gradient descent):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% ================ Part 3: Normal Equations ================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Solving with normal equations...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: The following code computes the closed form </span>
+<span class="token comment">%               solution for linear regression using the normal</span>
+<span class="token comment">%               equations. You should complete the code in </span>
+<span class="token comment">%               normalEqn.m</span>
+%
+<span class="token comment">%               After doing so, you should complete this code </span>
+<span class="token comment">%               to predict the price of a 1650 sq-ft, 3 br house.</span>
+%
+
+<span class="token comment">%% Load Data</span>
+data <span class="token operator">=</span> <span class="token function">csvread</span><span class="token punctuation">(</span><span class="token string">'ex1data2.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Add intercept term to X</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> X<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Calculate the parameters from the normal equation</span>
+theta <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Display normal equation's result</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta computed from the normal equations: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' %f \n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">% Estimate the price of a 1650 sq-ft, 3 br house</span>
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+price <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">% You should change this</span>
+
+X_test2<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1650</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+price<span class="token operator">=</span>X_test2<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+<span class="token comment">% ============================================================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Predicted price of a 1650 sq-ft, 3 br house '</span> <span class="token punctuation">...</span>
+         <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="computeCostMulti-m"><a href="#computeCostMulti-m" class="headerlink" title="computeCostMulti.m"></a>computeCostMulti.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+
+<span class="token comment">%% Clear and Close Figures</span>
+clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Loading data ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% Load Data</span>
+data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'ex1data2.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Print out some data points</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'First 10 examples from the dataset: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' x = [%.0f %.0f], y = %.0f \n'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">X</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span> <span class="token function">y</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Scale features and set them to zero mean</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Normalizing Features ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span>X mu sigma<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">featureNormalize</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Add intercept term to X</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> X<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">%% ================ Part 2: Gradient Descent ================</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: We have provided you with the following starter</span>
+<span class="token comment">%               code that runs gradient descent with a particular</span>
+<span class="token comment">%               learning rate (alpha). </span>
+%
+<span class="token comment">%               Your task is to first make sure that your functions - </span>
+<span class="token comment">%               computeCost and gradientDescent already work with </span>
+<span class="token comment">%               this starter code and support multiple variables.</span>
+%
+<span class="token comment">%               After that, try running gradient descent with </span>
+<span class="token comment">%               different values of alpha and see which one gives</span>
+<span class="token comment">%               you the best result.</span>
+%
+<span class="token comment">%               Finally, you should complete the code at the end</span>
+<span class="token comment">%               to predict the price of a 1650 sq-ft, 3 br house.</span>
+%
+<span class="token comment">% Hint: By using the 'hold on' command, you can plot multiple</span>
+<span class="token comment">%       graphs on the same figure.</span>
+%
+<span class="token comment">% Hint: At prediction, make sure you do the same feature normalization.</span>
+%
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Running gradient descent ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Choose some alpha value</span>
+alpha <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">;</span>
+num_iters <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Init Theta and Run Gradient Descent </span>
+theta <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescentMulti</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Plot the convergence graph</span>
+figure<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">numel</span><span class="token punctuation">(</span>J_history<span class="token punctuation">)</span><span class="token punctuation">,</span> J_history<span class="token punctuation">,</span> <span class="token string">'-b'</span><span class="token punctuation">,</span> <span class="token string">'LineWidth'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'Number of iterations'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'Cost J'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Display gradient descent's result</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta computed from gradient descent: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' %f \n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Estimate the price of a 1650 sq-ft, 3 br house</span>
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Recall that the first column of X is all-ones. Thus, it does</span>
+<span class="token comment">% not need to be normalized.</span>
+price <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">% You should change this</span>
+X_test1<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1650</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+price<span class="token operator">=</span>X_test1<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+
+<span class="token comment">% ============================================================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Predicted price of a 1650 sq-ft, 3 br house '</span> <span class="token punctuation">...</span>
+         <span class="token string">'(using gradient descent):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% ================ Part 3: Normal Equations ================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Solving with normal equations...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: The following code computes the closed form </span>
+<span class="token comment">%               solution for linear regression using the normal</span>
+<span class="token comment">%               equations. You should complete the code in </span>
+<span class="token comment">%               normalEqn.m</span>
+%
+<span class="token comment">%               After doing so, you should complete this code </span>
+<span class="token comment">%               to predict the price of a 1650 sq-ft, 3 br house.</span>
+%
+
+<span class="token comment">%% Load Data</span>
+data <span class="token operator">=</span> <span class="token function">csvread</span><span class="token punctuation">(</span><span class="token string">'ex1data2.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Add intercept term to X</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> X<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Calculate the parameters from the normal equation</span>
+theta <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Display normal equation's result</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta computed from the normal equations: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' %f \n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">% Estimate the price of a 1650 sq-ft, 3 br house</span>
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+price <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">% You should change this</span>
+
+X_test2<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1650</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+price<span class="token operator">=</span>X_test2<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+<span class="token comment">% ============================================================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Predicted price of a 1650 sq-ft, 3 br house '</span> <span class="token punctuation">...</span>
+         <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="gradientDescentMulti-m"><a href="#gradientDescentMulti-m" class="headerlink" title="gradientDescentMulti.m"></a>gradientDescentMulti.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+
+<span class="token comment">%% Clear and Close Figures</span>
+clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Loading data ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% Load Data</span>
+data <span class="token operator">=</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token string">'ex1data2.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Print out some data points</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'First 10 examples from the dataset: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' x = [%.0f %.0f], y = %.0f \n'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">X</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span> <span class="token function">y</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Scale features and set them to zero mean</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Normalizing Features ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span>X mu sigma<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">featureNormalize</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Add intercept term to X</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> X<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">%% ================ Part 2: Gradient Descent ================</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: We have provided you with the following starter</span>
+<span class="token comment">%               code that runs gradient descent with a particular</span>
+<span class="token comment">%               learning rate (alpha). </span>
+%
+<span class="token comment">%               Your task is to first make sure that your functions - </span>
+<span class="token comment">%               computeCost and gradientDescent already work with </span>
+<span class="token comment">%               this starter code and support multiple variables.</span>
+%
+<span class="token comment">%               After that, try running gradient descent with </span>
+<span class="token comment">%               different values of alpha and see which one gives</span>
+<span class="token comment">%               you the best result.</span>
+%
+<span class="token comment">%               Finally, you should complete the code at the end</span>
+<span class="token comment">%               to predict the price of a 1650 sq-ft, 3 br house.</span>
+%
+<span class="token comment">% Hint: By using the 'hold on' command, you can plot multiple</span>
+<span class="token comment">%       graphs on the same figure.</span>
+%
+<span class="token comment">% Hint: At prediction, make sure you do the same feature normalization.</span>
+%
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Running gradient descent ...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Choose some alpha value</span>
+alpha <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">;</span>
+num_iters <span class="token operator">=</span> <span class="token number">400</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Init Theta and Run Gradient Descent </span>
+theta <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescentMulti</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Plot the convergence graph</span>
+figure<span class="token punctuation">;</span>
+<span class="token function">plot</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">:</span><span class="token function">numel</span><span class="token punctuation">(</span>J_history<span class="token punctuation">)</span><span class="token punctuation">,</span> J_history<span class="token punctuation">,</span> <span class="token string">'-b'</span><span class="token punctuation">,</span> <span class="token string">'LineWidth'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">xlabel</span><span class="token punctuation">(</span><span class="token string">'Number of iterations'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">ylabel</span><span class="token punctuation">(</span><span class="token string">'Cost J'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Display gradient descent's result</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta computed from gradient descent: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' %f \n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Estimate the price of a 1650 sq-ft, 3 br house</span>
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Recall that the first column of X is all-ones. Thus, it does</span>
+<span class="token comment">% not need to be normalized.</span>
+price <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">% You should change this</span>
+X_test1<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1650</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+price<span class="token operator">=</span>X_test1<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+
+<span class="token comment">% ============================================================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Predicted price of a 1650 sq-ft, 3 br house '</span> <span class="token punctuation">...</span>
+         <span class="token string">'(using gradient descent):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Program paused. Press enter to continue.\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">pause</span><span class="token punctuation">;</span>
+
+<span class="token comment">%% ================ Part 3: Normal Equations ================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Solving with normal equations...\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: The following code computes the closed form </span>
+<span class="token comment">%               solution for linear regression using the normal</span>
+<span class="token comment">%               equations. You should complete the code in </span>
+<span class="token comment">%               normalEqn.m</span>
+%
+<span class="token comment">%               After doing so, you should complete this code </span>
+<span class="token comment">%               to predict the price of a 1650 sq-ft, 3 br house.</span>
+%
+
+<span class="token comment">%% Load Data</span>
+data <span class="token operator">=</span> <span class="token function">csvread</span><span class="token punctuation">(</span><span class="token string">'ex1data2.txt'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+X <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+y <span class="token operator">=</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">:</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+m <span class="token operator">=</span> <span class="token function">length</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Add intercept term to X</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token function">ones</span><span class="token punctuation">(</span>m<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> X<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Calculate the parameters from the normal equation</span>
+theta <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% Display normal equation's result</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'Theta computed from the normal equations: \n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">' %f \n'</span><span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token comment">% Estimate the price of a 1650 sq-ft, 3 br house</span>
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+price <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">% You should change this</span>
+
+X_test2<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">1650</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">-</span><span class="token function">mu</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">./</span><span class="token function">sigma</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+price<span class="token operator">=</span>X_test2<span class="token operator">*</span>theta<span class="token punctuation">;</span>
+<span class="token comment">% ============================================================</span>
+
+<span class="token function">fprintf</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Predicted price of a 1650 sq-ft, 3 br house '</span> <span class="token punctuation">...</span>
+         <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="normalEqn-m"><a href="#normalEqn-m" class="headerlink" title="normalEqn.m"></a>normalEqn.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+<span class="token comment">%NORMALEQN Computes the closed-form solution to linear regression </span>
+<span class="token comment">%   NORMALEQN(X,y) computes the closed-form solution to linear </span>
+<span class="token comment">%   regression using the normal equations.</span>
+
+theta <span class="token operator">=</span> <span class="token function">zeros</span><span class="token punctuation">(</span><span class="token function">size</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">% ====================== YOUR CODE HERE ======================</span>
+<span class="token comment">% Instructions: Complete the code to compute the closed form solution</span>
+<span class="token comment">%               to linear regression and put the result in theta.</span>
+%
+
+<span class="token comment">% ---------------------- Sample Solution ----------------------</span>
+
+
+
+theta <span class="token operator">=</span> <span class="token function">pinv</span><span class="token punctuation">(</span><span class="token function">transpose</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token operator">*</span>X<span class="token punctuation">)</span><span class="token operator">*</span><span class="token function">transpose</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span><span class="token operator">*</span>y<span class="token punctuation">;</span>
+
+<span class="token comment">% -------------------------------------------------------------</span>
+
+
+<span class="token comment">% ============================================================</span>
+
+<span class="token keyword">end</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p> <img src="/img/ML/ex1/mul.png" alt="mul"><br> <img src="/img/ML/ex1/suc2.png" alt="suc2"><br><span id="more"></span><br>真的是我第一次非常非常认真的，因为有一种嵌入灵魂的动容。我无数次劝我自己放弃，安心学习，可惜我做不到啊。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Link LZC
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://link-bnds.github.io/ML-ex1/" title="ML_ex1">https://link-bnds.github.io/ML-ex1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/OIO001/" rel="prev" title="OIO001">
+                  <i class="fa fa-chevron-left"></i> OIO001
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Stokes-Theorem/" rel="next" title="Stokes_Theorem">
+                  Stokes_Theorem <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Link LZC</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

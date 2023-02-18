@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"link-bnds.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="IntroductionIn my second semester of High School Junior year, when we were studying vector calculus @Calculus 3,  our teacher gave us an assignment: proof of Stokes formula. CALCULUS EARLY TRANSCENDEN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stokes_Theorem">
+<meta property="og:url" content="https://link-bnds.github.io/Stokes-Theorem/index.html">
+<meta property="og:site_name" content="Link LZCのBlog">
+<meta property="og:description" content="IntroductionIn my second semester of High School Junior year, when we were studying vector calculus @Calculus 3,  our teacher gave us an assignment: proof of Stokes formula. CALCULUS EARLY TRANSCENDEN">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://link-bnds.github.io/img/stks.png">
+<meta property="article:published_time" content="2022-07-20T07:20:42.000Z">
+<meta property="article:modified_time" content="2022-07-20T11:04:41.314Z">
+<meta property="article:author" content="Link LZC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://link-bnds.github.io/img/stks.png">
+
+
+<link rel="canonical" href="https://link-bnds.github.io/Stokes-Theorem/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://link-bnds.github.io/Stokes-Theorem/","path":"Stokes-Theorem/","title":"Stokes_Theorem"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Stokes_Theorem | Link LZCのBlog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Link LZCのBlog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Accumulation</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stoke%E2%80%99s-Theorem"><span class="nav-number">2.</span> <span class="nav-text">Stoke’s Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proof"><span class="nav-number">3.</span> <span class="nav-text">Proof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#After"><span class="nav-number">5.</span> <span class="nav-text">After</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Link LZC"
+      src="/images/rin.png">
+  <p class="site-author-name" itemprop="name">Link LZC</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Link-BNDS" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Link-BNDS" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/31118078" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;31118078" rel="noopener" target="_blank">Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kpl12345yh@163.com" title="E-Mail → mailto:kpl12345yh@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://link-bnds.github.io/Stokes-Theorem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/rin.png">
+      <meta itemprop="name" content="Link LZC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Link LZCのBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Stokes_Theorem
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-07-20 15:20:42 / Modified: 19:04:41" itemprop="dateCreated datePublished" datetime="2022-07-20T15:20:42+08:00">2022-07-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>In my second semester of High School Junior year, when we were studying vector calculus @Calculus 3,  our teacher gave us an assignment: proof of Stokes formula. CALCULUS EARLY TRANSCENDENTALS EIGHTH EDITION JAMES STEWART (our Calculus3 textbook) only has a special form of stokes’ theorem proof. Thus, I looked up the prood at old Chinese Text Book. It is a pity that our high school calculus education with American calculus education are quite different compared to Chinese’s. I searched on zhihu, Bilibili and other public platforms, but failed to find any suitable results. Luckily, I finally figure it out when I went back home during the epidemic.</p>
+<h3 id="Stoke’s-Theorem"><a href="#Stoke’s-Theorem" class="headerlink" title="Stoke’s Theorem"></a>Stoke’s Theorem</h3><p>For surface S in $R^3$ space is an oriented surface in $x,y,z$ coordinate with boundary $\partial S$. Let $R$ be abounded, open region in $s, t$ plane with smooth boundary $\partial R$ . Suppose that $F$ is a continuously differentiable vector field. $\vec{r}$ is a smooth parametrization that maps $R$ to $S$, and $\partial R$ to $\partial S$. Then</p>
+<script type="math/tex; mode=display">
+\iint_S{curl\,\,\vec{F}\,\,·\,\,d\vec{S}}=\iint_S{\left( \nabla \times \vec{F} \right) \,\,·\,\,\vec{n}\,\,dS}=\int_{\partial S}{\vec{F}\,\,·\,\,\vec{T}\,\,ds}=\,\,\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}}</script><p><img src="/img/stks.png" alt="stks"></p>
+<h3 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h3><p>Let</p>
+<script type="math/tex; mode=display">
+\vec{r}\left( s,t \right) =\left[ \begin{array}{c}
+    x\left( s,t \right)\\
+    y\left( s,t \right)\\
+    z\left( s,t \right)\\
+\end{array} \right] \,\,: R\rightarrow S.</script><p>Then.</p>
+<script type="math/tex; mode=display">
+d\vec{r}\mid_{\partial R}^{}\,\,=\left[ \begin{matrix}
+    \frac{\partial x}{\partial s}&        \frac{\partial x}{\partial t}\\
+    \frac{\partial y}{\partial s}&        \frac{\partial y}{\partial t}\\
+    \frac{\partial z}{\partial s}&        \frac{\partial z}{\partial t}\\
+\end{matrix} \right] \left[ \begin{array}{c}
+    ds\\
+    dt\\
+\end{array} \right] \,\,=\left[ \begin{array}{c}
+    \frac{\partial x}{\partial s}ds+\frac{\partial x}{\partial t}dt\\
+    \frac{\partial y}{\partial s}ds+\frac{\partial y}{\partial t}dt\\
+    \frac{\partial z}{\partial s}ds+\frac{\partial z}{\partial t}dt\\
+\end{array} \right] \,\,=\left[ \begin{array}{c}
+    \frac{\partial x}{\partial s}\\
+    \frac{\partial y}{\partial s}\\
+    \frac{\partial z}{\partial s}\\
+\end{array} \right] ds+\left[ \begin{array}{c}
+    \frac{\partial x}{\partial t}\\
+    \frac{\partial y}{\partial t}\\
+    \frac{\partial z}{\partial t}\\
+\end{array} \right] dt\,\,=\frac{\partial \vec{r}}{\partial s}ds+\frac{\partial \vec{r}}{\partial t}dt</script><p>Hence.</p>
+<script type="math/tex; mode=display">
+\int_{\partial S}{\vec{F}·}d\vec{r}=\int_{\partial S}{\left( \vec{F}·\frac{\partial \vec{r}}{\partial s}ds+\vec{F}·\frac{\partial \vec{r}}{\partial s} \right)}</script><p>We define a 2-dimensional vector field $G=(G1,G2)$ on the s,t, plane by</p>
+<script type="math/tex; mode=display">
+G_1=\vec{F}\,\,·\,\,\frac{\partial \vec{r}}{\partial s}\,\,  and\,\,  G_2=\vec{F}\,\,·\,\,\frac{\partial \vec{r}}{\partial t}</script><p>Therefore, we put G into the original line integral</p>
+<script type="math/tex; mode=display">
+\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial R}{\left( G_1ds+G_2dt \right) =\int_R{\begin{array}{c}
+    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t} \right) dsdt\,\,,\\
+\end{array}}\,\,}</script><script type="math/tex; mode=display">
+\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial R}{\left( G_1ds+G_2dt \right) \,\,}</script><p>On the other hand. </p>
+<script type="math/tex; mode=display">
+\iint_S{curl\,\,\vec{F}\,\,·\,\,d\vec{S}\,\,=\,\,\iint_R{curl\,\,\vec{F}\mid_{\vec{r}}^{}·\frac{\partial \vec{r}}{\partial s}\times \frac{\partial \vec{r}}{\partial t}dsdt}}</script><p>We expand it, get</p>
+<script type="math/tex; mode=display">
+curl\,\,\vec{F}\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial s}\times \frac{\partial \vec{r}}{\partial t}\,\,=\,\,\left| \begin{matrix}
+    \frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z}&        \frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x}&        \frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\\
+    \frac{\partial x}{\partial s}&        \frac{\partial y}{\partial s}&        \frac{\partial z}{\partial s}\\
+    \frac{\partial x}{\partial t}&        \frac{\partial y}{\partial t}&        \frac{\partial z}{\partial t}\\
+\end{matrix} \right|</script><script type="math/tex; mode=display">
+=\frac{\partial \vec{F}}{\partial s}·\frac{\partial \vec{r}}{\partial t}-\frac{\partial \vec{F}}{\partial t}·\frac{\partial \vec{r}}{\partial s}\,\,=\frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t}</script><p>Hence.</p>
+<script type="math/tex; mode=display">
+\int_R{curl\,\,F\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial s}}\times \frac{\partial \vec{r}}{\partial t}\,\,dsdt\,\,=\,\,\int_R{\begin{array}{c}
+    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t} \right) dsdt\,\,\\
+\end{array}}</script><p>For the line integral part,we have</p>
+<script type="math/tex; mode=display">
+\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial R}{\begin{array}{c}
+    \left( G_1ds+G_2dt \right) \,\,\\
+\end{array}}</script><p>Use Green’s Theorem, we know</p>
+<script type="math/tex; mode=display">
+\int_{\partial R}{\begin{array}{c}
+    \left( G_1ds+G_2dt \right)\\
+\end{array}}=\int_R{\begin{array}{c}
+    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t} \right) dsdt\,\,,\\
+\end{array}}</script><p>So, we can conclude that </p>
+<script type="math/tex; mode=display">
+\int_{\partial S}{\vec{F}·}d\vec{r}=\int_R{\begin{array}{c}
+    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t} \right) dsdt=\int_R{curl\,\,F\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial s}}\times \frac{\partial \vec{r}}{\partial t}\\
+\end{array}}dsdt=\iint_S{curl\,\,F\,\,·\,\,d\vec{S}}</script><p>Thus, we finished our proof of Stokes’ Theorem. </p>
+<span id="more"></span>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[1] Fichtengoltz, G. M. (1959). Course on the Differential and Integral.</p>
+<p>[2] Stewart, J., Clegg, D. K., &amp; Watson, S. (2020).Calculus: early transcendentals. Cengage Learning.</p>
+<h3 id="After"><a href="#After" class="headerlink" title="After"></a>After</h3><p>You can browse my other articles at my zhihu account  :  <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/543973521">https://zhuanlan.zhihu.com/p/543973521</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Link LZC
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://link-bnds.github.io/Stokes-Theorem/" title="Stokes_Theorem">https://link-bnds.github.io/Stokes-Theorem/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ML-ex1/" rel="prev" title="ML_ex1">
+                  <i class="fa fa-chevron-left"></i> ML_ex1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Logistic-Regression/" rel="next" title="Logistic_Regression">
+                  Logistic_Regression <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Link LZC</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
