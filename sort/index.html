@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"link-bnds.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="AP CSA Sorting Algorithms 没想到AP CSA居然也涉及排序的内容本篇就分享几种基本的排序算法以及JAVA代码实现 Content: Bubble Sort Insert Sort Select Sort Quick Sort Bucket Sort  Bubble Sort一种简单但是十分低效的算法。在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两">
+<meta name="description" content="AP CSA Sorting Algorithms 没想到AP CSA居然也涉及排序的内容 本篇就分享几种基本的排序算法以及JAVA代码实现 Content:  Bubble Sort Insert Sort Select Sort Quick Sort Bucket Sort  Bubble Sort 一种简单但是十分低效的算法。 在要排序的一组数中，对当前还未排好序的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sort">
 <meta property="og:url" content="https://link-bnds.github.io/sort/index.html">
 <meta property="og:site_name" content="Link LZCのBlog">
-<meta property="og:description" content="AP CSA Sorting Algorithms 没想到AP CSA居然也涉及排序的内容本篇就分享几种基本的排序算法以及JAVA代码实现 Content: Bubble Sort Insert Sort Select Sort Quick Sort Bucket Sort  Bubble Sort一种简单但是十分低效的算法。在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两">
+<meta property="og:description" content="AP CSA Sorting Algorithms 没想到AP CSA居然也涉及排序的内容 本篇就分享几种基本的排序算法以及JAVA代码实现 Content:  Bubble Sort Insert Sort Select Sort Quick Sort Bucket Sort  Bubble Sort 一种简单但是十分低效的算法。 在要排序的一组数中，对当前还未排好序的">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-07T08:34:21.000Z">
 <meta property="article:modified_time" content="2021-12-08T02:49:22.627Z">
@@ -125,7 +125,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#AP-CSA-Sorting-Algorithms"><span class="nav-number">1.</span> <span class="nav-text">AP CSA Sorting Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Content"><span class="nav-number">1.0.1.</span> <span class="nav-text">Content:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bubble-Sort"><span class="nav-number">1.1.</span> <span class="nav-text">Bubble Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Insert-Sort"><span class="nav-number">1.2.</span> <span class="nav-text">Insert Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Select-Sort"><span class="nav-number">1.3.</span> <span class="nav-text">Select Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-Sort"><span class="nav-number">1.4.</span> <span class="nav-text">Quick Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bucket-Sort"><span class="nav-number">1.5.</span> <span class="nav-text">Bucket Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sources-amp-References"><span class="nav-number">1.6.</span> <span class="nav-text">Sources&amp;References</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ap-csa-sorting-algorithms"><span class="nav-number">1.</span> <span class="nav-text">AP CSA Sorting Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#content"><span class="nav-number">1.0.1.</span> <span class="nav-text">Content:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bubble-sort"><span class="nav-number">1.1.</span> <span class="nav-text">Bubble Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insert-sort"><span class="nav-number">1.2.</span> <span class="nav-text">Insert Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#select-sort"><span class="nav-number">1.3.</span> <span class="nav-text">Select Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#quick-sort"><span class="nav-number">1.4.</span> <span class="nav-text">Quick Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bucket-sort"><span class="nav-number">1.5.</span> <span class="nav-text">Bucket Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sourcesreferences"><span class="nav-number">1.6.</span> <span class="nav-text">Sources&amp;References</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -241,16 +241,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="AP-CSA-Sorting-Algorithms"><a href="#AP-CSA-Sorting-Algorithms" class="headerlink" title="AP CSA Sorting Algorithms"></a>AP CSA Sorting Algorithms</h3><p> 没想到AP CSA居然也涉及排序的内容<br>本篇就分享几种基本的排序算法以及JAVA代码实现</p>
-<h5 id="Content"><a href="#Content" class="headerlink" title="Content:"></a>Content:</h5><ol>
+        <h3 id="ap-csa-sorting-algorithms">AP CSA Sorting Algorithms</h3>
+<p>没想到AP CSA居然也涉及排序的内容
+本篇就分享几种基本的排序算法以及JAVA代码实现</p>
+<h5 id="content">Content:</h5>
+<ol type="1">
 <li>Bubble Sort</li>
 <li>Insert Sort</li>
 <li>Select Sort</li>
 <li>Quick Sort</li>
 <li>Bucket Sort</li>
 </ol>
-<h4 id="Bubble-Sort"><a href="#Bubble-Sort" class="headerlink" title="Bubble Sort"></a>Bubble Sort</h4><p>一种简单但是十分低效的算法。<br>在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。即：每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。依次比较相邻的两个数，将小数放在前面，大数放在后面。即在第一轮比较中：首先比较第1个和第2个数，将小数放前，大数放后；然后比较第2个数和第3个数，将小数放前，大数放后，如此继续，直至比较最后两个数，将小数放前，大数放后。重复第一轮的步骤，直至全部排序完成。<br>如果能看到算法可视化的话，就可以看到小的数像气泡一样，一点一点的从下面浮上来，所以叫bubble sort，冒泡排序。</p>
-<p>Java 实现:<br><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<h4 id="bubble-sort">Bubble Sort</h4>
+<p>一种简单但是十分低效的算法。
+在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。即：每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。依次比较相邻的两个数，将小数放在前面，大数放在后面。即在第一轮比较中：首先比较第1个和第2个数，将小数放前，大数放后；然后比较第2个数和第3个数，将小数放前，大数放后，如此继续，直至比较最后两个数，将小数放前，大数放后。重复第一轮的步骤，直至全部排序完成。
+如果能看到算法可视化的话，就可以看到小的数像气泡一样，一点一点的从下面浮上来，所以叫bubble
+sort，冒泡排序。</p>
+<p>Java 实现: <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BubbleSort</span><span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> agrs<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token class-name">Scanner</span> scan<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -286,7 +293,8 @@
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
-<h4 id="Insert-Sort"><a href="#Insert-Sort" class="headerlink" title="Insert Sort"></a>Insert Sort</h4><p>把待排序的纪录按其关键码值的大小逐个插入到一个已经排好序的有序序列中，直到所有的纪录插入完为止，得到一个新的有序序列</p>
+<h4 id="insert-sort">Insert Sort</h4>
+<p>把待排序的纪录按其关键码值的大小逐个插入到一个已经排好序的有序序列中，直到所有的纪录插入完为止，得到一个新的有序序列</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java">
 <span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">InsertSort</span><span class="token punctuation">&#123;</span>
@@ -318,7 +326,8 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Select-Sort"><a href="#Select-Sort" class="headerlink" title="Select Sort"></a>Select Sort</h4><p>在要排序的一组数中，选出最小的一个数与第一个位置的数交换；然后在剩下的数当中再找最小的与第二个位置的数交换，如此循环到倒数第二个数和最后一个数比较为止。 </p>
+<h4 id="select-sort">Select Sort</h4>
+<p>在要排序的一组数中，选出最小的一个数与第一个位置的数交换；然后在剩下的数当中再找最小的与第二个位置的数交换，如此循环到倒数第二个数和最后一个数比较为止。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SelectSort</span><span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> agrs<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -347,7 +356,9 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a>Quick Sort</h4><p>也就是常说的快速排序， 综合上来讲最快也是最好的排序算法之一，记住别爆栈。</p>
+<h4 id="quick-sort">Quick Sort</h4>
+<p>也就是常说的快速排序，
+综合上来讲最快也是最好的排序算法之一，记住别爆栈。</p>
 <p>基本思想：选择一个基准元素,通常选择第一个元素或者最后一个元素,通过一轮扫描，将待排序列分成两部分,一部分比基准元素小,一部分大于等于基准元素,此时基准元素在其排好序后的正确位置,然后再用同样的方法递归地排序划分的两部分，直到各区间只有一个数。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuickSort</span><span class="token punctuation">&#123;</span>
@@ -396,7 +407,8 @@
 <span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <span id="more"></span>
-<h4 id="Bucket-Sort"><a href="#Bucket-Sort" class="headerlink" title="Bucket Sort"></a>Bucket Sort</h4><p>桶排序 最典型的空间换时间的例子</p>
+<h4 id="bucket-sort">Bucket Sort</h4>
+<p>桶排序 最典型的空间换时间的例子</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BucketSort</span><span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
@@ -421,7 +433,12 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Sources-amp-References"><a href="#Sources-amp-References" class="headerlink" title="Sources&amp;References"></a>Sources&amp;References</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zwtgyh/p/10631760.html">https://www.cnblogs.com/zwtgyh/p/10631760.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/left_la/article/details/8656425">https://blog.csdn.net/left_la/article/details/8656425</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zwb2jcy/p/9110676.html">https://www.cnblogs.com/zwb2jcy/p/9110676.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38790716/article/details/85929469">https://blog.csdn.net/qq_38790716/article/details/85929469</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36770641/article/details/82669788">https://blog.csdn.net/qq_36770641/article/details/82669788</a></p>
+<h4 id="sourcesreferences">Sources&amp;References</h4>
+<p>https://www.cnblogs.com/zwtgyh/p/10631760.html
+https://blog.csdn.net/left_la/article/details/8656425
+https://www.cnblogs.com/zwb2jcy/p/9110676.html
+https://blog.csdn.net/qq_38790716/article/details/85929469
+https://blog.csdn.net/qq_36770641/article/details/82669788</p>
 
     </div>
 
@@ -506,7 +523,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

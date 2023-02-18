@@ -300,10 +300,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>We developed an cross-platform, integrated, and graphical Java app based on JavaFX for BNDSer to practice AP CSA FRQs. </p>
-<p>You can download the release at <a target="_blank" rel="noopener" href="https://github.com/Link-BNDS/CSA_Practice_APP/releases/tag/AP">https://github.com/Link-BNDS/CSA_Practice_APP/releases/tag/AP</a>   .  You can also find the src at repo <a target="_blank" rel="noopener" href="https://github.com/Link-BNDS/CSA_Practice_APP">https://github.com/Link-BNDS/CSA_Practice_APP</a>.</p>
-<p>The description can also be found at that repo.  </p>
-<p>Thanks for your support. </p>
+          <p>We developed an cross-platform, integrated, and graphical Java app
+based on JavaFX for BNDSer to practice AP CSA FRQs.</p>
+<p>You can download the release at <a
+target="_blank" rel="noopener" href="https://github.com/Link-BNDS/CSA_Practice_APP/releases/tag/AP"
+class="uri">https://github.com/Link-BNDS/CSA_Practice_APP/releases/tag/AP</a>
+. You can also find the src at repo <a
+target="_blank" rel="noopener" href="https://github.com/Link-BNDS/CSA_Practice_APP"
+class="uri">https://github.com/Link-BNDS/CSA_Practice_APP</a>.</p>
+<p>The description can also be found at that repo.</p>
+<p>Thanks for your support.</p>
 
       
     </div>
@@ -368,33 +374,177 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h3><p>在Coursera上吴恩达的Machine Learning中，Logistic Regression作为初学者们接触到的第二个模型，其本身是非常重要的。但是在课程当中其损失函数的梯度公式则被一笔带过。而很多人都对其为什么与线性回归的损失函数梯度是一样的表示好奇，因此，我特地从头推导了这一式子。</p>
-<h3 id="2-逻辑斯蒂回归损失函数梯度推导"><a href="#2-逻辑斯蒂回归损失函数梯度推导" class="headerlink" title="2. 逻辑斯蒂回归损失函数梯度推导"></a>2. 逻辑斯蒂回归损失函数梯度推导</h3><h4 id="2-1-Introduction"><a href="#2-1-Introduction" class="headerlink" title="2.1. Introduction"></a>2.1. Introduction</h4><p>The “Machine Learning” course on Coursera is a one of the most popular course over all of MOOC. This course is famous for its simplified teaching step and other bright spots. Logistics regression, as the most important model for beginner, lacks appropriate detailed derivation of formula. In this blog, I am going to expound this section step by step.</p>
-<h4 id="2-2-Logistic-Regression"><a href="#2-2-Logistic-Regression" class="headerlink" title="2.2. Logistic Regression"></a>2.2. Logistic Regression</h4><p>I think most of you have already got familiar with logistic regression.</p>
-<h4 id="2-3-Cost-Function"><a href="#2-3-Cost-Function" class="headerlink" title="2.3. Cost Function"></a>2.3. Cost Function</h4><p>As we all know, the cost function of the logistic regression is modified from the one from linear regression model.</p>
-<script type="math/tex; mode=display">
-Cost\left( h_{\theta}\left( x \right) ,y \right) =\left\{ \begin{aligned}
-    -\log \left( h_{\theta}\left( x \right) \right) \,\,   if\,\,y&=1\\
-    -\log \left( 1-h_{\theta}\left( x \right) \right) \,\, if\,\,y&=0\\
-\end{aligned} \right.</script><p>To simplify this function, we can write it as</p>
-<script type="math/tex; mode=display">
-J\left( \theta \right) =\frac{1}{2m}\sum_{i=1}^m{Cost\left( h_{\theta}\left( x^{\left( i \right)} \right) ,y^{\left( i \right)} \right)}</script><p>which</p>
-<script type="math/tex; mode=display">
-Cost\left( h_{\theta}\left( x^{\left( i \right)} \right) ,y^{\left( i \right)} \right) =-y^{\left( i \right)}\log \left( h_{\theta}\left( x \right) \right) -\left( 1-y^{\left( i \right)} \right) \log \left( 1-h_{\theta}\left( x^{\left( i \right)} \right) \right)</script><h4 id="2-4-Gradient-of-Cost-Function"><a href="#2-4-Gradient-of-Cost-Function" class="headerlink" title="2.4. Gradient of Cost Function"></a>2.4. Gradient of Cost Function</h4><p>And next, is the part I want to expound. Andrew, in this MOOC, just briefly introduce that the gradient of the new cost function is the same as the one for linear regression. There is no explicit derivation here. </p>
-<p>For cost function $J$, we can write it as</p>
-<p>\begin{equation}<br>\begin{aligned}<br>J\left( \theta \right) &amp;=-\frac{1}{m}\left[ \sum<em>{i=1}^m{-y^{\left( i \right)}\log \left( h</em>{\theta}\left( x \right) \right) -\left( 1-y^{\left( i \right)} \right) \log \left( 1-h<em>{\theta}\left( x^{\left( i \right)} \right) \right)} \right]<br>\<br>\frac{\partial}{\partial \theta _j}J\left( \theta \right) &amp;=\frac{\partial}{\partial \theta _j}\left[ -\frac{1}{m}\left[ \sum</em>{i=1}^m{-y^{\left( i \right)}\log \left( h<em>{\theta}\left( x \right) \right) -\left( 1-y^{\left( i \right)} \right) \log \left( 1-h</em>{\theta}\left( x^{\left( i \right)} \right) \right)} \right] \right]<br>\<br>&amp;=-\frac{1}{m}\left[ \sum<em>{i=1}^m{\left( y^{\left( i \right)}\frac{1}{h</em>{\theta}\left( x^{\left( i \right)} \right)}\cdot \frac{\partial}{\partial \theta <em>j}h</em>{\theta}\left( x^{\left( i \right)} \right) +\left( 1-y^{\left( i \right)} \right) \cdot \frac{1}{1-h<em>{\theta}\left( x^{\left( i \right)} \right)}\cdot \frac{\partial}{\partial \theta _j}\left( -h</em>{\theta}\left( x^{\left( i \right)} \right) \right) \right)} \right]<br>\<br>&amp;=-\frac{1}{m}\left[ \sum<em>{i=1}^m{\left( y^{\left( i \right)}\frac{1}{h</em>{\theta}\left( x^{\left( i \right)} \right)}-\left( 1-y^{\left( i \right)} \right) \cdot \frac{1}{1-h<em>{\theta}\left( x^{\left( i \right)} \right)} \right) \cdot \frac{\partial}{\partial \theta _j}\left( h</em>{\theta}\left( x^{\left( i \right)} \right) \right)} \right]<br>\<br>&amp;=-\frac{1}{m}\left[ \sum_{i=1}^m{\left( y^{\left( i \right)}\frac{1}{g\left( \theta ^Tx \right)}-\left( 1-y^{\left( i \right)} \right) \cdot \frac{1}{1-g\left( \theta ^Tx \right)} \right) \cdot \frac{\partial}{\partial \theta _j}\left( g\left( \theta ^Tx \right) \right)} \right] </p>
-<p>\end{aligned}<br>\end{equation}</p>
-<p>In logistic regression, we use the logistic function as our decision function. Therefore, (Mentioned: $T$ refers to transpose)</p>
-<p>\begin{equation}<br>    \begin{aligned}<br>\frac{\partial}{\partial \theta _j}g\left( \theta ^Tx \right) &amp;=\frac{\partial}{\partial \theta _j}\cdot \frac{1}{1+e^{-\theta ^Tx}}<br>\<br>&amp;=\frac{\partial}{\partial \theta _j}\left( 1+e^{-\theta ^Tx} \right) ^{-1}<br>\<br>&amp;=-\left( 1+e^{-\theta ^Tx} \right) ^{-2}\cdot e^{e^{-\theta ^Tx}}\cdot x<br>\<br>&amp;=-\frac{e^{e^{-\theta ^Tx}}\cdot -x}{\left( 1+e^{e^{-\theta ^Tx}} \right) ^2}<br>    \end{aligned}<br>\end{equation}</p>
-<p>We set $k=e^{-\theta ^Tx}$, plug it in,</p>
-<p>\begin{equation}<br>    \begin{aligned}<br>&amp;=\frac{k}{\left( 1+k \right) ^2}\cdot x<br>\<br>&amp;=\left( \frac{1}{1+k}\cdot \frac{1+k-1}{1+k} \right) \cdot x<br>\<br>&amp;=\left[ \frac{1}{1+k}\cdot \left( 1-\frac{1}{1+k} \right) \right] \cdot x<br>    \end{aligned}<br>\end{equation}</p>
-<p>Bring it back, we can see we construct the logistic function itself,</p>
-<p>\begin{equation}<br>    \begin{aligned}<br>    &amp;=\left[ \frac{1}{1+e^{-\theta ^Tx}}\cdot \left( 1-\frac{1}{1+e^{-\theta ^Tx}} \right) \right] \cdot x<br>    \end{aligned}<br>\end{equation}</p>
+          <h3 id="前言">1. 前言</h3>
+<p>在Coursera上吴恩达的Machine Learning中，Logistic
+Regression作为初学者们接触到的第二个模型，其本身是非常重要的。但是在课程当中其损失函数的梯度公式则被一笔带过。而很多人都对其为什么与线性回归的损失函数梯度是一样的表示好奇，因此，我特地从头推导了这一式子。</p>
+<h3 id="逻辑斯蒂回归损失函数梯度推导">2.
+逻辑斯蒂回归损失函数梯度推导</h3>
+<h4 id="introduction">2.1. Introduction</h4>
+<p>The "Machine Learning" course on Coursera is a one of the most
+popular course over all of MOOC. This course is famous for its
+simplified teaching step and other bright spots. Logistics regression,
+as the most important model for beginner, lacks appropriate detailed
+derivation of formula. In this blog, I am going to expound this section
+step by step.</p>
+<h4 id="logistic-regression">2.2. Logistic Regression</h4>
+<p>I think most of you have already got familiar with logistic
+regression.</p>
+<h4 id="cost-function">2.3. Cost Function</h4>
+<p>As we all know, the cost function of the logistic regression is
+modified from the one from linear regression model. <span
+class="math display">\[
+Cost\left( h_{\theta}\left( x \right) ,y \right) =\left\{
+\begin{aligned}
+    -\log \left( h_{\theta}\left( x \right) \right)
+\,\,   if\,\,y&amp;=1\\
+    -\log \left( 1-h_{\theta}\left( x \right) \right) \,\,
+if\,\,y&amp;=0\\
+\end{aligned} \right.
+\]</span></p>
+<p>To simplify this function, we can write it as</p>
+<p><span class="math display">\[
+J\left( \theta \right) =\frac{1}{2m}\sum_{i=1}^m{Cost\left(
+h_{\theta}\left( x^{\left( i \right)} \right) ,y^{\left( i \right)}
+\right)}
+\]</span></p>
+<p>which</p>
+<p><span class="math display">\[
+Cost\left( h_{\theta}\left( x^{\left( i \right)} \right) ,y^{\left( i
+\right)} \right) =-y^{\left( i \right)}\log \left( h_{\theta}\left( x
+\right) \right) -\left( 1-y^{\left( i \right)} \right) \log \left(
+1-h_{\theta}\left( x^{\left( i \right)} \right) \right)
+\]</span></p>
+<h4 id="gradient-of-cost-function">2.4. Gradient of Cost Function</h4>
+<p>And next, is the part I want to expound. Andrew, in this MOOC, just
+briefly introduce that the gradient of the new cost function is the same
+as the one for linear regression. There is no explicit derivation
+here.</p>
+<p>For cost function <span class="math inline">\(J\)</span>, we can
+write it as</p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+J\left( \theta \right) &amp;=-\frac{1}{m}\left[ \sum_{i=1}^m{-y^{\left(
+i \right)}\log \left( h_{\theta}\left( x \right) \right) -\left(
+1-y^{\left( i \right)} \right) \log \left( 1-h_{\theta}\left( x^{\left(
+i \right)} \right) \right)} \right]
+\\
+\frac{\partial}{\partial \theta _j}J\left( \theta \right)
+&amp;=\frac{\partial}{\partial \theta _j}\left[ -\frac{1}{m}\left[
+\sum_{i=1}^m{-y^{\left( i \right)}\log \left( h_{\theta}\left( x \right)
+\right) -\left( 1-y^{\left( i \right)} \right) \log \left(
+1-h_{\theta}\left( x^{\left( i \right)} \right) \right)} \right] \right]
+\\
+&amp;=-\frac{1}{m}\left[ \sum_{i=1}^m{\left( y^{\left( i
+\right)}\frac{1}{h_{\theta}\left( x^{\left( i \right)} \right)}\cdot
+\frac{\partial}{\partial \theta _j}h_{\theta}\left( x^{\left( i \right)}
+\right) +\left( 1-y^{\left( i \right)} \right) \cdot
+\frac{1}{1-h_{\theta}\left( x^{\left( i \right)} \right)}\cdot
+\frac{\partial}{\partial \theta _j}\left( -h_{\theta}\left( x^{\left( i
+\right)} \right) \right) \right)} \right]
+\\
+&amp;=-\frac{1}{m}\left[ \sum_{i=1}^m{\left( y^{\left( i
+\right)}\frac{1}{h_{\theta}\left( x^{\left( i \right)} \right)}-\left(
+1-y^{\left( i \right)} \right) \cdot \frac{1}{1-h_{\theta}\left(
+x^{\left( i \right)} \right)} \right) \cdot \frac{\partial}{\partial
+\theta _j}\left( h_{\theta}\left( x^{\left( i \right)} \right) \right)}
+\right]
+\\
+&amp;=-\frac{1}{m}\left[ \sum_{i=1}^m{\left( y^{\left( i
+\right)}\frac{1}{g\left( \theta ^Tx \right)}-\left( 1-y^{\left( i
+\right)} \right) \cdot \frac{1}{1-g\left( \theta ^Tx \right)} \right)
+\cdot \frac{\partial}{\partial \theta _j}\left( g\left( \theta ^Tx
+\right) \right)} \right]
+
+\end{aligned}
+\end{equation}\]</span></p>
+<p>In logistic regression, we use the logistic function as our decision
+function. Therefore, (Mentioned: <span class="math inline">\(T\)</span>
+refers to transpose)</p>
+<p><span class="math display">\[\begin{equation}
+    \begin{aligned}
+\frac{\partial}{\partial \theta _j}g\left( \theta ^Tx \right)
+&amp;=\frac{\partial}{\partial \theta _j}\cdot \frac{1}{1+e^{-\theta
+^Tx}}
+\\
+&amp;=\frac{\partial}{\partial \theta _j}\left( 1+e^{-\theta ^Tx}
+\right) ^{-1}
+\\
+&amp;=-\left( 1+e^{-\theta ^Tx} \right) ^{-2}\cdot e^{e^{-\theta
+^Tx}}\cdot x
+\\
+&amp;=-\frac{e^{e^{-\theta ^Tx}}\cdot -x}{\left( 1+e^{e^{-\theta ^Tx}}
+\right) ^2}
+    \end{aligned}
+\end{equation}\]</span></p>
+<p>We set <span class="math inline">\(k=e^{-\theta ^Tx}\)</span>, plug
+it in,</p>
+<p><span class="math display">\[\begin{equation}
+    \begin{aligned}
+&amp;=\frac{k}{\left( 1+k \right) ^2}\cdot x
+\\
+&amp;=\left( \frac{1}{1+k}\cdot \frac{1+k-1}{1+k} \right) \cdot x
+\\
+&amp;=\left[ \frac{1}{1+k}\cdot \left( 1-\frac{1}{1+k} \right) \right]
+\cdot x
+    \end{aligned}
+\end{equation}\]</span></p>
+<p>Bring it back, we can see we construct the logistic function
+itself,</p>
+<p><span class="math display">\[\begin{equation}
+    \begin{aligned}
+    &amp;=\left[ \frac{1}{1+e^{-\theta ^Tx}}\cdot \left(
+1-\frac{1}{1+e^{-\theta ^Tx}} \right) \right] \cdot x
+    \end{aligned}
+\end{equation}\]</span></p>
 <p>Thus, we can use the logistic function to simplify the eqution,</p>
-<p>\begin{equation}<br>    \begin{aligned}<br>&amp;=\left[ \frac{1}{1+e^{-\theta ^Tx}}\cdot \left( 1-\frac{1}{1+e^{-\theta ^Tx}} \right) \right] \cdot x<br>\<br>&amp;=g\left( \theta ^Tx \right) \cdot \left( 1-g\left( \theta ^Tx \right) \right) \cdot x<br>    \end{aligned}<br>\end{equation}</p>
-<p>We plug back this portion to the gradient of cost function (1), </p>
-<p>\begin{equation}<br>    \begin{aligned}<br>\frac{\partial}{\partial \theta <em>j}J\left( \theta \right) &amp;=-\frac{1}{m}\left[ \sum</em>{i=1}^m{\left( y^{\left( i \right)}\cdot \frac{1}{g\left( \theta ^Tx \right)}-\left( 1-y^{\left( i \right)} \right) \cdot \frac{1}{1-g\left( \theta ^Tx \right)} \right)}\cdot g\left( \theta ^Tx \right) \cdot \left( 1-g\left( \theta ^Tx \right) \right) \cdot x^{\left( i \right)} \right]<br>\<br>&amp;=-\frac{1}{m}\left[ \sum<em>{i=1}^m{\left[ y^{\left( i \right)}\cdot \left( 1-g\left( \theta ^Tx \right) \right) \cdot x^{\left( i \right)}-\left( 1-y^{\left( i \right)} \right) \cdot g\left( \theta ^Tx \right) \cdot x^{\left( i \right)} \right]} \right]<br>\<br>&amp;=-\frac{1}{m}\sum</em>{i=1}^m{\left[ y^{\left( i \right)}\cdot x^{\left( i \right)}-y^{\left( i \right)}\cdot g\left( \theta ^Tx \right) \cdot x^{\left( i \right)}-g\left( \theta ^Tx \right) \cdot x^{\left( i \right)}+y^{\left( i \right)}\cdot g\left( \theta ^Tx \right) \cdot x^{\left( i \right)} \right]}<br>\<br>&amp;\mathrm{because}-y^{\left( i \right)}\cdot g\left( \theta ^Tx \right) \cdot x^{\left( i \right)}\,\,\mathrm{offsets} +y^{\left( i \right)}\cdot g\left( \theta ^Tx \right) \cdot x^{\left( i \right)}<br>\<br>&amp;=-\frac{1}{m}\sum<em>{i=1}^m{\left[ y^{\left( i \right)}\cdot x^{\left( i \right)}-g\left( \theta ^Tx \right) \cdot x^{\left( i \right)} \right]}<br>\<br>&amp;=-\frac{1}{m}\sum</em>{i=1}^m{\left[ \left[ y^{\left( i \right)}-g\left( \theta ^Tx \right) \right] \cdot x^{\left( i \right)} \right]}<br>\<br>&amp;=\frac{1}{m}\sum<em>{i=1}^m{\left[ \left[ h</em>{\theta}\left( x^{\left( i \right)} \right) -y^{\left( i \right)} \right] \cdot x^{\left( i \right)} \right]}<br>  \end{aligned}<br>\end{equation}</p>
-<p>which is the same as linear regression’s </p>
+<p><span class="math display">\[\begin{equation}
+    \begin{aligned}
+&amp;=\left[ \frac{1}{1+e^{-\theta ^Tx}}\cdot \left(
+1-\frac{1}{1+e^{-\theta ^Tx}} \right) \right] \cdot x
+\\
+&amp;=g\left( \theta ^Tx \right) \cdot \left( 1-g\left( \theta ^Tx
+\right) \right) \cdot x
+    \end{aligned}
+\end{equation}\]</span></p>
+<p>We plug back this portion to the gradient of cost function (1),</p>
+<p><span class="math display">\[\begin{equation}
+    \begin{aligned}
+\frac{\partial}{\partial \theta _j}J\left( \theta \right)
+&amp;=-\frac{1}{m}\left[ \sum_{i=1}^m{\left( y^{\left( i \right)}\cdot
+\frac{1}{g\left( \theta ^Tx \right)}-\left( 1-y^{\left( i \right)}
+\right) \cdot \frac{1}{1-g\left( \theta ^Tx \right)} \right)}\cdot
+g\left( \theta ^Tx \right) \cdot \left( 1-g\left( \theta ^Tx \right)
+\right) \cdot x^{\left( i \right)} \right]
+\\
+&amp;=-\frac{1}{m}\left[ \sum_{i=1}^m{\left[ y^{\left( i \right)}\cdot
+\left( 1-g\left( \theta ^Tx \right) \right) \cdot x^{\left( i
+\right)}-\left( 1-y^{\left( i \right)} \right) \cdot g\left( \theta ^Tx
+\right) \cdot x^{\left( i \right)} \right]} \right]
+\\
+&amp;=-\frac{1}{m}\sum_{i=1}^m{\left[ y^{\left( i \right)}\cdot
+x^{\left( i \right)}-y^{\left( i \right)}\cdot g\left( \theta ^Tx
+\right) \cdot x^{\left( i \right)}-g\left( \theta ^Tx \right) \cdot
+x^{\left( i \right)}+y^{\left( i \right)}\cdot g\left( \theta ^Tx
+\right) \cdot x^{\left( i \right)} \right]}
+\\
+&amp;\mathrm{because}-y^{\left( i \right)}\cdot g\left( \theta ^Tx
+\right) \cdot x^{\left( i \right)}\,\,\mathrm{offsets} +y^{\left( i
+\right)}\cdot g\left( \theta ^Tx \right) \cdot x^{\left( i \right)}
+\\
+&amp;=-\frac{1}{m}\sum_{i=1}^m{\left[ y^{\left( i \right)}\cdot
+x^{\left( i \right)}-g\left( \theta ^Tx \right) \cdot x^{\left( i
+\right)} \right]}
+\\
+&amp;=-\frac{1}{m}\sum_{i=1}^m{\left[ \left[ y^{\left( i
+\right)}-g\left( \theta ^Tx \right) \right] \cdot x^{\left( i \right)}
+\right]}
+\\
+&amp;=\frac{1}{m}\sum_{i=1}^m{\left[ \left[ h_{\theta}\left( x^{\left( i
+\right)} \right) -y^{\left( i \right)} \right] \cdot x^{\left( i
+\right)} \right]}
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>which is the same as linear regression's</p>
 <p>Q.E.D.</p>
 
       
@@ -460,22 +610,59 @@ Cost\left( h_{\theta}\left( x^{\left( i \right)} \right) ,y^{\left( i \right)} \
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>In my second semester of High School Junior year, when we were studying vector calculus @Calculus 3,  our teacher gave us an assignment: proof of Stokes formula. CALCULUS EARLY TRANSCENDENTALS EIGHTH EDITION JAMES STEWART (our Calculus3 textbook) only has a special form of stokes’ theorem proof. Thus, I looked up the prood at old Chinese Text Book. It is a pity that our high school calculus education with American calculus education are quite different compared to Chinese’s. I searched on zhihu, Bilibili and other public platforms, but failed to find any suitable results. Luckily, I finally figure it out when I went back home during the epidemic.</p>
-<h3 id="Stoke’s-Theorem"><a href="#Stoke’s-Theorem" class="headerlink" title="Stoke’s Theorem"></a>Stoke’s Theorem</h3><p>For surface S in $R^3$ space is an oriented surface in $x,y,z$ coordinate with boundary $\partial S$. Let $R$ be abounded, open region in $s, t$ plane with smooth boundary $\partial R$ . Suppose that $F$ is a continuously differentiable vector field. $\vec{r}$ is a smooth parametrization that maps $R$ to $S$, and $\partial R$ to $\partial S$. Then</p>
-<script type="math/tex; mode=display">
-\iint_S{curl\,\,\vec{F}\,\,·\,\,d\vec{S}}=\iint_S{\left( \nabla \times \vec{F} \right) \,\,·\,\,\vec{n}\,\,dS}=\int_{\partial S}{\vec{F}\,\,·\,\,\vec{T}\,\,ds}=\,\,\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}}</script><p><img src="/img/stks.png" alt="stks"></p>
-<h3 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h3><p>Let</p>
-<script type="math/tex; mode=display">
+          <h3 id="introduction">Introduction</h3>
+<p>In my second semester of High School Junior year, when we were
+studying vector calculus <span class="citation"
+data-cites="Calculus">@Calculus</span> 3, our teacher gave us an
+assignment: proof of Stokes formula. CALCULUS EARLY TRANSCENDENTALS
+EIGHTH EDITION JAMES STEWART (our Calculus3 textbook) only has a special
+form of stokes' theorem proof. Thus, I looked up the prood at old
+Chinese Text Book. It is a pity that our high school calculus education
+with American calculus education are quite different compared to
+Chinese's. I searched on zhihu, Bilibili and other public platforms, but
+failed to find any suitable results. Luckily, I finally figure it out
+when I went back home during the epidemic.</p>
+<h3 id="stokes-theorem">Stoke's Theorem</h3>
+<p>For surface S in <span class="math inline">\(R^3\)</span> space is an
+oriented surface in <span class="math inline">\(x,y,z\)</span>
+coordinate with boundary <span class="math inline">\(\partial
+S\)</span>. Let <span class="math inline">\(R\)</span> be abounded, open
+region in <span class="math inline">\(s, t\)</span> plane with smooth
+boundary <span class="math inline">\(\partial R\)</span> . Suppose that
+<span class="math inline">\(F\)</span> is a continuously differentiable
+vector field. <span class="math inline">\(\vec{r}\)</span> is a smooth
+parametrization that maps <span class="math inline">\(R\)</span> to
+<span class="math inline">\(S\)</span>, and <span
+class="math inline">\(\partial R\)</span> to <span
+class="math inline">\(\partial S\)</span>. Then</p>
+<p><span class="math display">\[
+\iint_S{curl\,\,\vec{F}\,\,·\,\,d\vec{S}}=\iint_S{\left( \nabla \times
+\vec{F} \right) \,\,·\,\,\vec{n}\,\,dS}=\int_{\partial
+S}{\vec{F}\,\,·\,\,\vec{T}\,\,ds}=\,\,\int_{\partial
+S}{\vec{F}\,\,·\,\,d\vec{r}}
+\]</span></p>
+<figure>
+<img src="/img/stks.png" alt="stks" />
+<figcaption aria-hidden="true">stks</figcaption>
+</figure>
+<h3 id="proof">Proof</h3>
+<p>Let</p>
+<p><span class="math display">\[
 \vec{r}\left( s,t \right) =\left[ \begin{array}{c}
     x\left( s,t \right)\\
     y\left( s,t \right)\\
     z\left( s,t \right)\\
-\end{array} \right] \,\,: R\rightarrow S.</script><p>Then.</p>
-<script type="math/tex; mode=display">
+\end{array} \right] \,\,: R\rightarrow S.
+\]</span></p>
+<p>Then.</p>
+<p><span class="math display">\[
 d\vec{r}\mid_{\partial R}^{}\,\,=\left[ \begin{matrix}
-    \frac{\partial x}{\partial s}&        \frac{\partial x}{\partial t}\\
-    \frac{\partial y}{\partial s}&        \frac{\partial y}{\partial t}\\
-    \frac{\partial z}{\partial s}&        \frac{\partial z}{\partial t}\\
+    \frac{\partial x}{\partial s}&amp;      \frac{\partial x}{\partial
+t}\\
+    \frac{\partial y}{\partial s}&amp;      \frac{\partial y}{\partial
+t}\\
+    \frac{\partial z}{\partial s}&amp;      \frac{\partial z}{\partial
+t}\\
 \end{matrix} \right] \left[ \begin{array}{c}
     ds\\
     dt\\
@@ -491,43 +678,92 @@ d\vec{r}\mid_{\partial R}^{}\,\,=\left[ \begin{matrix}
     \frac{\partial x}{\partial t}\\
     \frac{\partial y}{\partial t}\\
     \frac{\partial z}{\partial t}\\
-\end{array} \right] dt\,\,=\frac{\partial \vec{r}}{\partial s}ds+\frac{\partial \vec{r}}{\partial t}dt</script><p>Hence.</p>
-<script type="math/tex; mode=display">
-\int_{\partial S}{\vec{F}·}d\vec{r}=\int_{\partial S}{\left( \vec{F}·\frac{\partial \vec{r}}{\partial s}ds+\vec{F}·\frac{\partial \vec{r}}{\partial s} \right)}</script><p>We define a 2-dimensional vector field $G=(G1,G2)$ on the s,t, plane by</p>
-<script type="math/tex; mode=display">
-G_1=\vec{F}\,\,·\,\,\frac{\partial \vec{r}}{\partial s}\,\,  and\,\,  G_2=\vec{F}\,\,·\,\,\frac{\partial \vec{r}}{\partial t}</script><p>Therefore, we put G into the original line integral</p>
-<script type="math/tex; mode=display">
-\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial R}{\left( G_1ds+G_2dt \right) =\int_R{\begin{array}{c}
-    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t} \right) dsdt\,\,,\\
-\end{array}}\,\,}</script><script type="math/tex; mode=display">
-\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial R}{\left( G_1ds+G_2dt \right) \,\,}</script><p>On the other hand. </p>
-<script type="math/tex; mode=display">
-\iint_S{curl\,\,\vec{F}\,\,·\,\,d\vec{S}\,\,=\,\,\iint_R{curl\,\,\vec{F}\mid_{\vec{r}}^{}·\frac{\partial \vec{r}}{\partial s}\times \frac{\partial \vec{r}}{\partial t}dsdt}}</script><p>We expand it, get</p>
-<script type="math/tex; mode=display">
-curl\,\,\vec{F}\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial s}\times \frac{\partial \vec{r}}{\partial t}\,\,=\,\,\left| \begin{matrix}
-    \frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z}&        \frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x}&        \frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\\
-    \frac{\partial x}{\partial s}&        \frac{\partial y}{\partial s}&        \frac{\partial z}{\partial s}\\
-    \frac{\partial x}{\partial t}&        \frac{\partial y}{\partial t}&        \frac{\partial z}{\partial t}\\
-\end{matrix} \right|</script><script type="math/tex; mode=display">
-=\frac{\partial \vec{F}}{\partial s}·\frac{\partial \vec{r}}{\partial t}-\frac{\partial \vec{F}}{\partial t}·\frac{\partial \vec{r}}{\partial s}\,\,=\frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t}</script><p>Hence.</p>
-<script type="math/tex; mode=display">
-\int_R{curl\,\,F\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial s}}\times \frac{\partial \vec{r}}{\partial t}\,\,dsdt\,\,=\,\,\int_R{\begin{array}{c}
-    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t} \right) dsdt\,\,\\
-\end{array}}</script><p>For the line integral part,we have</p>
-<script type="math/tex; mode=display">
-\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial R}{\begin{array}{c}
+\end{array} \right] dt\,\,=\frac{\partial \vec{r}}{\partial
+s}ds+\frac{\partial \vec{r}}{\partial t}dt
+\]</span></p>
+<p>Hence.</p>
+<p><span class="math display">\[
+\int_{\partial S}{\vec{F}·}d\vec{r}=\int_{\partial S}{\left(
+\vec{F}·\frac{\partial \vec{r}}{\partial s}ds+\vec{F}·\frac{\partial
+\vec{r}}{\partial s} \right)}
+\]</span></p>
+<p>We define a 2-dimensional vector field <span
+class="math inline">\(G=(G1,G2)\)</span> on the s,t, plane by</p>
+<p><span class="math display">\[
+G_1=\vec{F}\,\,·\,\,\frac{\partial \vec{r}}{\partial
+s}\,\,  and\,\,  G_2=\vec{F}\,\,·\,\,\frac{\partial \vec{r}}{\partial t}
+\]</span></p>
+<p>Therefore, we put G into the original line integral</p>
+<p><span class="math display">\[
+\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial R}{\left(
+G_1ds+G_2dt \right) =\int_R{\begin{array}{c}
+    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial
+t} \right) dsdt\,\,,\\
+\end{array}}\,\,}
+\]</span></p>
+<p><span class="math display">\[
+\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial R}{\left(
+G_1ds+G_2dt \right) \,\,}
+\]</span></p>
+<p>On the other hand.</p>
+<p><span class="math display">\[
+\iint_S{curl\,\,\vec{F}\,\,·\,\,d\vec{S}\,\,=\,\,\iint_R{curl\,\,\vec{F}\mid_{\vec{r}}^{}·\frac{\partial
+\vec{r}}{\partial s}\times \frac{\partial \vec{r}}{\partial t}dsdt}}
+\]</span></p>
+<p>We expand it, get</p>
+<p><span class="math display">\[
+curl\,\,\vec{F}\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial
+s}\times \frac{\partial \vec{r}}{\partial t}\,\,=\,\,\left|
+\begin{matrix}
+    \frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial
+z}&amp;        \frac{\partial F_1}{\partial z}-\frac{\partial
+F_3}{\partial x}&amp;        \frac{\partial F_2}{\partial
+x}-\frac{\partial F_1}{\partial y}\\
+    \frac{\partial x}{\partial s}&amp;      \frac{\partial y}{\partial
+s}&amp;      \frac{\partial z}{\partial s}\\
+    \frac{\partial x}{\partial t}&amp;      \frac{\partial y}{\partial
+t}&amp;      \frac{\partial z}{\partial t}\\
+\end{matrix} \right|
+\]</span></p>
+<p><span class="math display">\[
+=\frac{\partial \vec{F}}{\partial s}·\frac{\partial \vec{r}}{\partial
+t}-\frac{\partial \vec{F}}{\partial t}·\frac{\partial \vec{r}}{\partial
+s}\,\,=\frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t}
+\]</span></p>
+<p>Hence.</p>
+<p><span class="math display">\[
+\int_R{curl\,\,F\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial
+s}}\times \frac{\partial \vec{r}}{\partial
+t}\,\,dsdt\,\,=\,\,\int_R{\begin{array}{c}
+    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial
+t} \right) dsdt\,\,\\
+\end{array}}
+\]</span></p>
+<p>For the line integral part,we have</p>
+<p><span class="math display">\[
+\int_{\partial S}{\vec{F}\,\,·\,\,d\vec{r}=}\int_{\partial
+R}{\begin{array}{c}
     \left( G_1ds+G_2dt \right) \,\,\\
-\end{array}}</script><p>Use Green’s Theorem, we know</p>
-<script type="math/tex; mode=display">
+\end{array}}
+\]</span></p>
+<p>Use Green's Theorem, we know</p>
+<p><span class="math display">\[
 \int_{\partial R}{\begin{array}{c}
     \left( G_1ds+G_2dt \right)\\
 \end{array}}=\int_R{\begin{array}{c}
-    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t} \right) dsdt\,\,,\\
-\end{array}}</script><p>So, we can conclude that </p>
-<script type="math/tex; mode=display">
+    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial
+t} \right) dsdt\,\,,\\
+\end{array}}
+\]</span></p>
+<p>So, we can conclude that</p>
+<p><span class="math display">\[
 \int_{\partial S}{\vec{F}·}d\vec{r}=\int_R{\begin{array}{c}
-    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial t} \right) dsdt=\int_R{curl\,\,F\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial s}}\times \frac{\partial \vec{r}}{\partial t}\\
-\end{array}}dsdt=\iint_S{curl\,\,F\,\,·\,\,d\vec{S}}</script><p>Thus, we finished our proof of Stokes’ Theorem. </p>
+    \left( \frac{\partial G_2}{\partial s}-\frac{\partial G_1}{\partial
+t} \right) dsdt=\int_R{curl\,\,F\mid_{\vec{r}}^{}\cdot \frac{\partial
+\vec{r}}{\partial s}}\times \frac{\partial \vec{r}}{\partial t}\\
+\end{array}}dsdt=\iint_S{curl\,\,F\,\,·\,\,d\vec{S}}
+\]</span></p>
+<p>Thus, we finished our proof of Stokes' Theorem.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Stokes-Theorem/#more" rel="contents">
@@ -605,7 +841,10 @@ curl\,\,\vec{F}\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial s}\times 
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Machine-Learning-By-Andrew-Ng"><a href="#Machine-Learning-By-Andrew-Ng" class="headerlink" title="Machine Learning By Andrew Ng"></a>Machine Learning By Andrew Ng</h3><h4 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h4><ul>
+          <h3 id="machine-learning-by-andrew-ng">Machine Learning By Andrew
+Ng</h3>
+<h4 id="content">Content</h4>
+<ul>
 <li>Introduction</li>
 <li>Potential Submit Problem</li>
 <li>ex1.m</li>
@@ -617,9 +856,31 @@ curl\,\,\vec{F}\mid_{\vec{r}}^{}\cdot \frac{\partial \vec{r}}{\partial s}\times 
 <li>gradientDescentMulti.m</li>
 <li>normalEqn.m</li>
 </ul>
-<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>I have listened for so many times that the course: Machine Learning by Andrew Ng is one of the best introductory course for machine learning.<br>Now, I have finished the first two week’s classed and pass the first programming project. I truly fathom out the deliberate design of this course. The passion and meticulous designed project impress me as well. It is so particular that I feel like someone is teaching me hand-by-hand.<br>Coursera uses a kind of judging method which is not like the common OJ that you upload your program and they run it and test it with their test data. Coursera uses an aggregate local submit module that can do all the stuff. You just need to generate a token that linked to your coursera account so that it can upload your progress. It is so cooooool!!!!!!<br> <img src="/img/ML/ex1/f1.png" alt="f1"><br> <img src="/img/ML/ex1/f2.png" alt="f2"></p>
-<h5 id="Potential-Submit-Problem"><a href="#Potential-Submit-Problem" class="headerlink" title="Potential Submit Problem"></a>Potential Submit Problem</h5><p>Once I tried to submit the program, it says<br><img src="/img/ML/ex1/d1.png" alt="d1"><br>According to <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44498043/article/details/105904715">https://blog.csdn.net/qq_44498043/article/details/105904715</a> and <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45923568/article/details/104193579">https://blog.csdn.net/weixin_45923568/article/details/104193579</a> , I found out that the error is caused by the vulnerable grammar that it used before. And in the latest version of matlab, matlab banned those kinds of grammar in order to increase the stability. So all we need is to go to the coursera website and download the new version of submit module. </p>
-<h4 id="ex1-m"><a href="#ex1-m" class="headerlink" title="ex1.m"></a>ex1.m</h4><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% Initialization</span>
+<h4 id="introduction">Introduction</h4>
+<p>I have listened for so many times that the course: Machine Learning
+by Andrew Ng is one of the best introductory course for machine
+learning. Now, I have finished the first two week's classed and pass the
+first programming project. I truly fathom out the deliberate design of
+this course. The passion and meticulous designed project impress me as
+well. It is so particular that I feel like someone is teaching me
+hand-by-hand. Coursera uses a kind of judging method which is not like
+the common OJ that you upload your program and they run it and test it
+with their test data. Coursera uses an aggregate local submit module
+that can do all the stuff. You just need to generate a token that linked
+to your coursera account so that it can upload your progress. It is so
+cooooool!!!!!! <img src="/img/ML/ex1/f1.png" alt="f1" /> <img
+src="/img/ML/ex1/f2.png" alt="f2" /> ##### Potential Submit Problem Once
+I tried to submit the program, it says <img src="/img/ML/ex1/d1.png"
+alt="d1" /> According to
+https://blog.csdn.net/qq_44498043/article/details/105904715 and
+https://blog.csdn.net/weixin_45923568/article/details/104193579 , I
+found out that the error is caused by the vulnerable grammar that it
+used before. And in the latest version of matlab, matlab banned those
+kinds of grammar in order to increase the stability. So all we need is
+to go to the coursera website and download the new version of submit
+module.</p>
+<h4 id="ex1.m">ex1.m</h4>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% Initialization</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
 
 <span class="token comment">%% ==================== Part 1: Basic Function ====================</span>
@@ -727,7 +988,8 @@ figure<span class="token punctuation">;</span>
 hold on<span class="token punctuation">;</span>
 <span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">theta</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">theta</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'rx'</span><span class="token punctuation">,</span> <span class="token string">'MarkerSize'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">'LineWidth'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="computerCost-m"><a href="#computerCost-m" class="headerlink" title="computerCost.m"></a>computerCost.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> J <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span>
+<h5 id="computercost.m">computerCost.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> J <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span>
 <span class="token comment">%COMPUTECOST Compute cost for linear regression</span>
 <span class="token comment">%   J = COMPUTECOST(X, y, theta) computes the cost of using theta as the</span>
 <span class="token comment">%   parameter for linear regression to fit the data points in X and y</span>
@@ -748,7 +1010,8 @@ J<span class="token operator">=</span>J<span class="token operator">./</span><sp
 <span class="token comment">% =========================================================================</span>
 
 <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="gradientDescent-m"><a href="#gradientDescent-m" class="headerlink" title="gradientDescent.m"></a>gradientDescent.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescent</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span>
+<h5 id="gradientdescent.m">gradientDescent.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescent</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span>
 <span class="token comment">%GRADIENTDESCENT Performs gradient descent to learn theta</span>
 <span class="token comment">%   theta = GRADIENTDESCENT(X, y, theta, alpha, num_iters) updates theta by </span>
 <span class="token comment">%   taking num_iters gradient steps with learning rate alpha</span>
@@ -774,8 +1037,10 @@ J_history <span class="token operator">=</span> <span class="token function">zer
     <span class="token function">J_history</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span>
 <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> <img src="/img/ML/ex1/f3.png" alt="f3"><br> <img src="/img/ML/ex1/suc1.png" alt="suc1"></p>
-<h5 id="ex1-multi-m"><a href="#ex1-multi-m" class="headerlink" title="ex1_multi.m"></a>ex1_multi.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+<p><img src="/img/ML/ex1/f3.png" alt="f3" /> <img
+src="/img/ML/ex1/suc1.png" alt="suc1" /></p>
+<h5 id="ex1_multi.m">ex1_multi.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
 
 <span class="token comment">%% Clear and Close Figures</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
@@ -910,7 +1175,8 @@ price<span class="token operator">=</span>X_test2<span class="token operator">*<
          <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="featureNormalize-m"><a href="#featureNormalize-m" class="headerlink" title="featureNormalize.m"></a>featureNormalize.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+<h5 id="featurenormalize.m">featureNormalize.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
 
 <span class="token comment">%% Clear and Close Figures</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
@@ -1045,7 +1311,8 @@ price<span class="token operator">=</span>X_test2<span class="token operator">*<
          <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="computeCostMulti-m"><a href="#computeCostMulti-m" class="headerlink" title="computeCostMulti.m"></a>computeCostMulti.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+<h5 id="computecostmulti.m">computeCostMulti.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
 
 <span class="token comment">%% Clear and Close Figures</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
@@ -1180,7 +1447,8 @@ price<span class="token operator">=</span>X_test2<span class="token operator">*<
          <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="gradientDescentMulti-m"><a href="#gradientDescentMulti-m" class="headerlink" title="gradientDescentMulti.m"></a>gradientDescentMulti.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+<h5 id="gradientdescentmulti.m">gradientDescentMulti.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
 
 <span class="token comment">%% Clear and Close Figures</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
@@ -1315,7 +1583,8 @@ price<span class="token operator">=</span>X_test2<span class="token operator">*<
          <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="normalEqn-m"><a href="#normalEqn-m" class="headerlink" title="normalEqn.m"></a>normalEqn.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+<h5 id="normaleqn.m">normalEqn.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
 <span class="token comment">%NORMALEQN Computes the closed-form solution to linear regression </span>
 <span class="token comment">%   NORMALEQN(X,y) computes the closed-form solution to linear </span>
 <span class="token comment">%   regression using the normal equations.</span>
@@ -1340,7 +1609,8 @@ theta <span class="token operator">=</span> <span class="token function">pinv</s
 
 <span class="token keyword">end</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> <img src="/img/ML/ex1/mul.png" alt="mul"><br> <img src="/img/ML/ex1/suc2.png" alt="suc2"><br>
+<p><img src="/img/ML/ex1/mul.png" alt="mul" /> <img
+src="/img/ML/ex1/suc2.png" alt="suc2" />
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ML-ex1/#more" rel="contents">
@@ -1412,7 +1682,9 @@ theta <span class="token operator">=</span> <span class="token function">pinv</s
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>I am afraid of being a simp of her, not because I don’t love her but because I love her so deeply that I can’t afford the cost of losing the unparalleledly and weakly existing relationship with her. </p>
+          <p>I am afraid of being a simp of her, not because I don't love her but
+because I love her so deeply that I can't afford the cost of losing the
+unparalleledly and weakly existing relationship with her.</p>
 
       
     </div>
@@ -1477,7 +1749,9 @@ theta <span class="token operator">=</span> <span class="token function">pinv</s
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>忽然发现在学校这种全天学习，学和放松娱乐整合成一个整体的状态非常高效且舒适。总而言之就是一直在学并且放松，从早上一直到睡觉，并不像有些人想的那样，什么时候到什么时候全学，然后开始玩知道睡觉，我觉得这种学习时间的分隔感会降低学习效率。<br>此外，在看了那么多北师大实验国际部的申请成功案例之后，我终于意识到了一个事情，就是实验人均一个各种各样的科研，这才是他们成功的关键。<br>爱一个人却不敢接近，并不是因为爱得不够深；而是因为爱的足够深从而害怕失去这易碎且美好的挂念。</p>
+          <p>忽然发现在学校这种全天学习，学和放松娱乐整合成一个整体的状态非常高效且舒适。总而言之就是一直在学并且放松，从早上一直到睡觉，并不像有些人想的那样，什么时候到什么时候全学，然后开始玩知道睡觉，我觉得这种学习时间的分隔感会降低学习效率。
+此外，在看了那么多北师大实验国际部的申请成功案例之后，我终于意识到了一个事情，就是实验人均一个各种各样的科研，这才是他们成功的关键。
+爱一个人却不敢接近，并不是因为爱得不够深；而是因为爱的足够深从而害怕失去这易碎且美好的挂念。</p>
 
       
     </div>
@@ -1542,13 +1816,19 @@ theta <span class="token operator">=</span> <span class="token function">pinv</s
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Introduction-to-OpenCV"><a href="#Introduction-to-OpenCV" class="headerlink" title="Introduction to OpenCV"></a>Introduction to OpenCV</h2><h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3><ul>
+          <h2 id="introduction-to-opencv">Introduction to OpenCV</h2>
+<h3 id="content">Content</h3>
+<ul>
 <li>Introduction</li>
 <li>Code</li>
 <li>Demo</li>
 </ul>
-<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>An interesting “Hello World” in OpenCV. It invokes the camera and recognizes hands. Then, it uses the coordinates of these nodes in hands to draw the real time hands frameworks.</p>
-<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h4><p>Here comes the code:<br><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
+<h4 id="introduction">Introduction</h4>
+<p>An interesting "Hello World" in OpenCV. It invokes the camera and
+recognizes hands. Then, it uses the coordinates of these nodes in hands
+to draw the real time hands frameworks.</p>
+<h4 id="code">Code</h4>
+<p>Here comes the code: <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> cv2
 <span class="token keyword">import</span> mediapipe <span class="token keyword">as</span> mp
 
 
@@ -1573,8 +1853,8 @@ mpDraw<span class="token operator">=</span> mp<span class="token punctuation">.<
     
     <span class="token keyword">if</span> cv2<span class="token punctuation">.</span>waitKey<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'q'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword">break</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
-<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w44y1j7y3">https://www.bilibili.com/video/BV1w44y1j7y3</a></p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> #### Demo</p>
+<p>https://www.bilibili.com/video/BV1w44y1j7y3</p>
 
       
     </div>
@@ -1639,7 +1919,9 @@ mpDraw<span class="token operator">=</span> mp<span class="token punctuation">.<
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>观Pioneer年度最佳论文们有感。<br>在美本申请领域，人们看起来的强度（指除了GPA以外的，例如标化，水竞赛，活动等等），其实并不像高考一样，纯和你的智力与努力程度成正比。美本申请的这些东西，其实更取决于起步时间。就比如说高一开学的时候，有的人托福115，有的人还没开始学，像托福，ACT，SAT，高中生的那些所谓的”竞赛“，其实并不需要智力和方法，就是看学习时间的长短和积累。而当起步晚的学生们在奋力学标化的时候，那些起步早的人，就可以拿出时间去搞活动，搞竞赛，搞”科研“去了。至于美高学生，那就是起步更早的，所以就，从美本申请的角度来看更成功。<br>所以我想对现在迷茫和焦虑的人说，你虽然感觉自己没有有一些人强，并不是因为你的能力不行，而是你的起步时间太晚了，所以不要担心，美本其实都差不多，本科大家都是一样的，好好学习，最后体现的才是大家真实的实力。</p>
+          <p>观Pioneer年度最佳论文们有感。
+在美本申请领域，人们看起来的强度（指除了GPA以外的，例如标化，水竞赛，活动等等），其实并不像高考一样，纯和你的智力与努力程度成正比。美本申请的这些东西，其实更取决于起步时间。就比如说高一开学的时候，有的人托福115，有的人还没开始学，像托福，ACT，SAT，高中生的那些所谓的”竞赛“，其实并不需要智力和方法，就是看学习时间的长短和积累。而当起步晚的学生们在奋力学标化的时候，那些起步早的人，就可以拿出时间去搞活动，搞竞赛，搞”科研“去了。至于美高学生，那就是起步更早的，所以就，从美本申请的角度来看更成功。
+所以我想对现在迷茫和焦虑的人说，你虽然感觉自己没有有一些人强，并不是因为你的能力不行，而是你的起步时间太晚了，所以不要担心，美本其实都差不多，本科大家都是一样的，好好学习，最后体现的才是大家真实的实力。</p>
 
       
     </div>
@@ -1704,9 +1986,12 @@ mpDraw<span class="token operator">=</span> mp<span class="token punctuation">.<
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>啊<br>后天就考托福了<br>不过想想也没必要紧张，反正我要求不高，又不申夏校，只要比之前的拼分高一点就行。</p>
+          <p>啊 后天就考托福了
+不过想想也没必要紧张，反正我要求不高，又不申夏校，只要比之前的拼分高一点就行。</p>
 <p>假期还感兴趣了一些别的，比如星际争霸的re-take；日本那个全能房屋改造，看那些现代和风的建筑和装修真的很喜欢，以后一定要想办法多参观这种和风一户建。此外还有戏腔，非传统京剧，虽然是那些流行的比如探窗啊赤玲啥的，但是我觉得挺好听的。</p>
-<p>开学了之后就可以开始稍微正常一点，闲适一点了，可惜要一遍刷AP，准备开学考。之后还得一边背ACT单词，一边读要读的Lolita 高堡奇人和历史书了，，。还要想办法抽出时间继续学习ML。。。。啊 还有物理C。。淦了</p>
+<p>开学了之后就可以开始稍微正常一点，闲适一点了，可惜要一遍刷AP，准备开学考。之后还得一边背ACT单词，一边读要读的Lolita
+高堡奇人和历史书了，，。还要想办法抽出时间继续学习ML。。。。啊
+还有物理C。。淦了</p>
 
       
     </div>

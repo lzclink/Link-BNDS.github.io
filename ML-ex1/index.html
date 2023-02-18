@@ -20,20 +20,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"link-bnds.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Machine Learning By Andrew NgContent Introduction Potential Submit Problem ex1.m computerCost.m gradientDescent.m ex1_multi.m featureNormalize.m computeCostMulti.m gradientDescentMulti.m normalEqn.m">
+<meta name="description" content="Machine Learning By Andrew Ng Content  Introduction Potential Submit Problem ex1.m computerCost.m gradientDescent.m ex1_multi.m featureNormalize.m computeCostMulti.m gradientDescentMulti.m">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ML_ex1">
 <meta property="og:url" content="https://link-bnds.github.io/ML-ex1/index.html">
 <meta property="og:site_name" content="Link LZCのBlog">
-<meta property="og:description" content="Machine Learning By Andrew NgContent Introduction Potential Submit Problem ex1.m computerCost.m gradientDescent.m ex1_multi.m featureNormalize.m computeCostMulti.m gradientDescentMulti.m normalEqn.m">
+<meta property="og:description" content="Machine Learning By Andrew Ng Content  Introduction Potential Submit Problem ex1.m computerCost.m gradientDescent.m ex1_multi.m featureNormalize.m computeCostMulti.m gradientDescentMulti.m">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/f1.png">
-<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/f2.png">
 <meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/d1.png">
 <meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/f3.png">
-<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/suc1.png">
 <meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/mul.png">
-<meta property="og:image" content="https://link-bnds.github.io/img/ML/ex1/suc2.png">
 <meta property="article:published_time" content="2022-03-18T06:50:54.000Z">
 <meta property="article:modified_time" content="2022-07-20T09:26:37.650Z">
 <meta property="article:author" content="Link LZC">
@@ -133,7 +130,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning-By-Andrew-Ng"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning By Andrew Ng</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Content"><span class="nav-number">1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Potential-Submit-Problem"><span class="nav-number">1.2.1.</span> <span class="nav-text">Potential Submit Problem</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ex1-m"><span class="nav-number">1.3.</span> <span class="nav-text">ex1.m</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#computerCost-m"><span class="nav-number">1.3.1.</span> <span class="nav-text">computerCost.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gradientDescent-m"><span class="nav-number">1.3.2.</span> <span class="nav-text">gradientDescent.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ex1-multi-m"><span class="nav-number">1.3.3.</span> <span class="nav-text">ex1_multi.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#featureNormalize-m"><span class="nav-number">1.3.4.</span> <span class="nav-text">featureNormalize.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#computeCostMulti-m"><span class="nav-number">1.3.5.</span> <span class="nav-text">computeCostMulti.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gradientDescentMulti-m"><span class="nav-number">1.3.6.</span> <span class="nav-text">gradientDescentMulti.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#normalEqn-m"><span class="nav-number">1.3.7.</span> <span class="nav-text">normalEqn.m</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#machine-learning-by-andrew-ng"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning By Andrew
+Ng</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#content"><span class="nav-number">1.1.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#introduction"><span class="nav-number">1.2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ex1.m"><span class="nav-number">1.3.</span> <span class="nav-text">ex1.m</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#computercost.m"><span class="nav-number">1.3.1.</span> <span class="nav-text">computerCost.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gradientdescent.m"><span class="nav-number">1.3.2.</span> <span class="nav-text">gradientDescent.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ex1_multi.m"><span class="nav-number">1.3.3.</span> <span class="nav-text">ex1_multi.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#featurenormalize.m"><span class="nav-number">1.3.4.</span> <span class="nav-text">featureNormalize.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#computecostmulti.m"><span class="nav-number">1.3.5.</span> <span class="nav-text">computeCostMulti.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#gradientdescentmulti.m"><span class="nav-number">1.3.6.</span> <span class="nav-text">gradientDescentMulti.m</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#normaleqn.m"><span class="nav-number">1.3.7.</span> <span class="nav-text">normalEqn.m</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -249,7 +247,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="Machine-Learning-By-Andrew-Ng"><a href="#Machine-Learning-By-Andrew-Ng" class="headerlink" title="Machine Learning By Andrew Ng"></a>Machine Learning By Andrew Ng</h3><h4 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h4><ul>
+        <h3 id="machine-learning-by-andrew-ng">Machine Learning By Andrew
+Ng</h3>
+<h4 id="content">Content</h4>
+<ul>
 <li>Introduction</li>
 <li>Potential Submit Problem</li>
 <li>ex1.m</li>
@@ -261,9 +262,31 @@
 <li>gradientDescentMulti.m</li>
 <li>normalEqn.m</li>
 </ul>
-<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>I have listened for so many times that the course: Machine Learning by Andrew Ng is one of the best introductory course for machine learning.<br>Now, I have finished the first two week’s classed and pass the first programming project. I truly fathom out the deliberate design of this course. The passion and meticulous designed project impress me as well. It is so particular that I feel like someone is teaching me hand-by-hand.<br>Coursera uses a kind of judging method which is not like the common OJ that you upload your program and they run it and test it with their test data. Coursera uses an aggregate local submit module that can do all the stuff. You just need to generate a token that linked to your coursera account so that it can upload your progress. It is so cooooool!!!!!!<br> <img src="/img/ML/ex1/f1.png" alt="f1"><br> <img src="/img/ML/ex1/f2.png" alt="f2"></p>
-<h5 id="Potential-Submit-Problem"><a href="#Potential-Submit-Problem" class="headerlink" title="Potential Submit Problem"></a>Potential Submit Problem</h5><p>Once I tried to submit the program, it says<br><img src="/img/ML/ex1/d1.png" alt="d1"><br>According to <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44498043/article/details/105904715">https://blog.csdn.net/qq_44498043/article/details/105904715</a> and <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45923568/article/details/104193579">https://blog.csdn.net/weixin_45923568/article/details/104193579</a> , I found out that the error is caused by the vulnerable grammar that it used before. And in the latest version of matlab, matlab banned those kinds of grammar in order to increase the stability. So all we need is to go to the coursera website and download the new version of submit module. </p>
-<h4 id="ex1-m"><a href="#ex1-m" class="headerlink" title="ex1.m"></a>ex1.m</h4><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% Initialization</span>
+<h4 id="introduction">Introduction</h4>
+<p>I have listened for so many times that the course: Machine Learning
+by Andrew Ng is one of the best introductory course for machine
+learning. Now, I have finished the first two week's classed and pass the
+first programming project. I truly fathom out the deliberate design of
+this course. The passion and meticulous designed project impress me as
+well. It is so particular that I feel like someone is teaching me
+hand-by-hand. Coursera uses a kind of judging method which is not like
+the common OJ that you upload your program and they run it and test it
+with their test data. Coursera uses an aggregate local submit module
+that can do all the stuff. You just need to generate a token that linked
+to your coursera account so that it can upload your progress. It is so
+cooooool!!!!!! <img src="/img/ML/ex1/f1.png" alt="f1" /> <img
+src="/img/ML/ex1/f2.png" alt="f2" /> ##### Potential Submit Problem Once
+I tried to submit the program, it says <img src="/img/ML/ex1/d1.png"
+alt="d1" /> According to
+https://blog.csdn.net/qq_44498043/article/details/105904715 and
+https://blog.csdn.net/weixin_45923568/article/details/104193579 , I
+found out that the error is caused by the vulnerable grammar that it
+used before. And in the latest version of matlab, matlab banned those
+kinds of grammar in order to increase the stability. So all we need is
+to go to the coursera website and download the new version of submit
+module.</p>
+<h4 id="ex1.m">ex1.m</h4>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% Initialization</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
 
 <span class="token comment">%% ==================== Part 1: Basic Function ====================</span>
@@ -371,7 +394,8 @@ figure<span class="token punctuation">;</span>
 hold on<span class="token punctuation">;</span>
 <span class="token function">plot</span><span class="token punctuation">(</span><span class="token function">theta</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">theta</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'rx'</span><span class="token punctuation">,</span> <span class="token string">'MarkerSize'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token string">'LineWidth'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="computerCost-m"><a href="#computerCost-m" class="headerlink" title="computerCost.m"></a>computerCost.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> J <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span>
+<h5 id="computercost.m">computerCost.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> J <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span>
 <span class="token comment">%COMPUTECOST Compute cost for linear regression</span>
 <span class="token comment">%   J = COMPUTECOST(X, y, theta) computes the cost of using theta as the</span>
 <span class="token comment">%   parameter for linear regression to fit the data points in X and y</span>
@@ -392,7 +416,8 @@ J<span class="token operator">=</span>J<span class="token operator">./</span><sp
 <span class="token comment">% =========================================================================</span>
 
 <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="gradientDescent-m"><a href="#gradientDescent-m" class="headerlink" title="gradientDescent.m"></a>gradientDescent.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescent</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span>
+<h5 id="gradientdescent.m">gradientDescent.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">,</span> J_history<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">gradientDescent</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">,</span> alpha<span class="token punctuation">,</span> num_iters<span class="token punctuation">)</span>
 <span class="token comment">%GRADIENTDESCENT Performs gradient descent to learn theta</span>
 <span class="token comment">%   theta = GRADIENTDESCENT(X, y, theta, alpha, num_iters) updates theta by </span>
 <span class="token comment">%   taking num_iters gradient steps with learning rate alpha</span>
@@ -418,8 +443,10 @@ J_history <span class="token operator">=</span> <span class="token function">zer
     <span class="token function">J_history</span><span class="token punctuation">(</span>iter<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token function">computeCost</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">,</span> theta<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span>
 <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> <img src="/img/ML/ex1/f3.png" alt="f3"><br> <img src="/img/ML/ex1/suc1.png" alt="suc1"></p>
-<h5 id="ex1-multi-m"><a href="#ex1-multi-m" class="headerlink" title="ex1_multi.m"></a>ex1_multi.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+<p><img src="/img/ML/ex1/f3.png" alt="f3" /> <img
+src="/img/ML/ex1/suc1.png" alt="suc1" /></p>
+<h5 id="ex1_multi.m">ex1_multi.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
 
 <span class="token comment">%% Clear and Close Figures</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
@@ -554,7 +581,8 @@ price<span class="token operator">=</span>X_test2<span class="token operator">*<
          <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="featureNormalize-m"><a href="#featureNormalize-m" class="headerlink" title="featureNormalize.m"></a>featureNormalize.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+<h5 id="featurenormalize.m">featureNormalize.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
 
 <span class="token comment">%% Clear and Close Figures</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
@@ -689,7 +717,8 @@ price<span class="token operator">=</span>X_test2<span class="token operator">*<
          <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="computeCostMulti-m"><a href="#computeCostMulti-m" class="headerlink" title="computeCostMulti.m"></a>computeCostMulti.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+<h5 id="computecostmulti.m">computeCostMulti.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
 
 <span class="token comment">%% Clear and Close Figures</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
@@ -824,7 +853,8 @@ price<span class="token operator">=</span>X_test2<span class="token operator">*<
          <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="gradientDescentMulti-m"><a href="#gradientDescentMulti-m" class="headerlink" title="gradientDescentMulti.m"></a>gradientDescentMulti.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
+<h5 id="gradientdescentmulti.m">gradientDescentMulti.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token comment">%% ================ Part 1: Feature Normalization ================</span>
 
 <span class="token comment">%% Clear and Close Figures</span>
 clear <span class="token punctuation">;</span> close all<span class="token punctuation">;</span> clc
@@ -959,7 +989,8 @@ price<span class="token operator">=</span>X_test2<span class="token operator">*<
          <span class="token string">'(using normal equations):\n $%f\n'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="normalEqn-m"><a href="#normalEqn-m" class="headerlink" title="normalEqn.m"></a>normalEqn.m</h5><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+<h5 id="normaleqn.m">normalEqn.m</h5>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab"><span class="token keyword">function</span> <span class="token punctuation">[</span>theta<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">normalEqn</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
 <span class="token comment">%NORMALEQN Computes the closed-form solution to linear regression </span>
 <span class="token comment">%   NORMALEQN(X,y) computes the closed-form solution to linear </span>
 <span class="token comment">%   regression using the normal equations.</span>
@@ -984,7 +1015,9 @@ theta <span class="token operator">=</span> <span class="token function">pinv</s
 
 <span class="token keyword">end</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p> <img src="/img/ML/ex1/mul.png" alt="mul"><br> <img src="/img/ML/ex1/suc2.png" alt="suc2"><br><span id="more"></span><br>真的是我第一次非常非常认真的，因为有一种嵌入灵魂的动容。我无数次劝我自己放弃，安心学习，可惜我做不到啊。</p>
+<p><img src="/img/ML/ex1/mul.png" alt="mul" /> <img
+src="/img/ML/ex1/suc2.png" alt="suc2" /> <span id="more"></span>
+真的是我第一次非常非常认真的，因为有一种嵌入灵魂的动容。我无数次劝我自己放弃，安心学习，可惜我做不到啊。</p>
 
     </div>
 
@@ -1069,7 +1102,7 @@ theta <span class="token operator">=</span> <span class="token function">pinv</s
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
